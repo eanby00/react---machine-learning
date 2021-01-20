@@ -1,5 +1,11 @@
 import React, { Component } from "react";
 import ModelData from "./ModelData";
+import Paper from "@material-ui/core/Paper";
+import Table from "@material-ui/core/Table";
+import TableHead from "@material-ui/core/TableHead";
+import TableBody from "@material-ui/core/TableBody";
+import TableRow from "@material-ui/core/TableRow";
+import TableCell from "@material-ui/core/TableCell";
 
 class ModelDatas extends Component{
   constructor(props){
@@ -15,9 +21,9 @@ class ModelDatas extends Component{
         lists.push(<ModelData key={this.state.datas[i].id} data={this.state.datas[i]}></ModelData>)
       }
       return(
-      <table>
-        <thead>
-          <tr>
+      <Table>
+        <TableHead>
+          <TableRow>
             <th>이름</th>
             <th>회귀/분류</th>
             <th>loss 종류</th>
@@ -25,12 +31,12 @@ class ModelDatas extends Component{
             <th>정확도</th>
             <th>언어 종류</th>
             <th>확인</th>
-          </tr>
-        </thead>
-        <tbody>
+          </TableRow>
+        </TableHead>
+        <TableBody>
           {lists}
-        </tbody>
-      </table>
+        </TableBody>
+      </Table>
       );
     }
 }
