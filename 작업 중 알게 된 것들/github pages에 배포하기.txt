@@ -16,3 +16,7 @@ script 부분에 predeploy, deploy 추가
 setting - option - github pages를 통해 성공 여부 확인 가능
 
 지식 출처: https://velog.io/@byjihye/react-github-pages
+
+
+
+만약 에러 사항이 하나라도 있으면 내가 만든 웹 페이지가 아닌 리액트의 기초 화면을 출력함
