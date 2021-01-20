@@ -1,0 +1,15 @@
+프로젝트에 gh-pages 패키지 설치
+    npm install gh-pages --save-dev
+
+설치가 완료된 후 프로젝트에 있는 package.json 파일을 열어 hompage 주소를 추가
+    http://{사용자 이름}.github.io/{저장소 이름}
+    ex: "homepage": "http://JIHYE-P.github.io/react-github-pages"
+
+script 부분에 predeploy, deploy 추가
+    "scripts": {
+    //...
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
+    }
+
+저장 후 터미널 창에 npm run deploy 실행
