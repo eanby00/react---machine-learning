@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import ModelData from "./ModelData";
-import Paper from "@material-ui/core/Paper";
+// import Paper from "@material-ui/core/Paper";
 import Table from "@material-ui/core/Table";
 import TableHead from "@material-ui/core/TableHead";
 import TableBody from "@material-ui/core/TableBody";
@@ -24,13 +24,13 @@ class ModelDatas extends Component{
       <Table>
         <TableHead>
           <TableRow>
-            <th>이름</th>
-            <th>회귀/분류</th>
-            <th>loss 종류</th>
-            <th>loss</th>
-            <th>정확도</th>
-            <th>언어 종류</th>
-            <th>확인</th>
+            <TableCell>이름</TableCell>
+            <TableCell>회귀/분류</TableCell>
+            <TableCell>loss 종류</TableCell>
+            <TableCell>loss</TableCell>
+            <TableCell>정확도</TableCell>
+            <TableCell>언어 종류</TableCell>
+            <TableCell>확인</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
