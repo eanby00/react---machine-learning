@@ -13,3 +13,6 @@ script 부분에 predeploy, deploy 추가
     }
 
 저장 후 터미널 창에 npm run deploy 실행
+setting - option - github pages를 통해 성공 여부 확인 가능
+
+지식 출처: https://velog.io/@byjihye/react-github-pages
