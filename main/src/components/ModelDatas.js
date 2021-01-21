@@ -25,18 +25,14 @@ const styles = theme => ({
 });
 
 class ModelDatas extends Component{
-  constructor(props){
-    super(props);
-    this.state = {
-      datas: this.props.datas
-    }
-  }
+  
     render(){
       const { classes } = this.props;
       var lists = [];
-      for (var i in this.state.datas){
-        lists.push(<ModelData key={this.state.datas[i].id} data={this.state.datas[i]}></ModelData>)
+      for (var i in this.props.datas){
+        lists.push(<ModelData key={this.props.datas[i].id} data={this.props.datas[i]}></ModelData>)
       }
+      
 
       return(
         <div className={classes.root}>
@@ -50,6 +46,8 @@ class ModelDatas extends Component{
                   <TableCell>loss</TableCell>
                   <TableCell>정확도</TableCell>
                   <TableCell>언어 종류</TableCell>
+                  <TableCell>생성 날짜</TableCell>
+                  <TableCell>수정 날짜</TableCell>
                   <TableCell>확인</TableCell>
                 </TableRow>
               </TableHead>

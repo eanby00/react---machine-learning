@@ -71,6 +71,7 @@ class App extends Component {
   constructor(props){
     super(props);
     this.state = {
+      searchKeyword: "",
       datas: [
         {
           id: 1,
@@ -79,7 +80,9 @@ class App extends Component {
           loss_type: "mse",
           loss: 0.05,
           accuracy: 99.5,
-          language: "파이썬"
+          language: "파이썬",
+          date_create: "20210121",
+          date_modify: "20210121"
         },
         {
           id: 2,
@@ -88,7 +91,9 @@ class App extends Component {
           loss_type: "mse",
           loss: 1,
           accuracy: 98,
-          language: "파이썬"
+          language: "파이썬",
+          date_create: "20210121",
+          date_modify: "20210121"
         },
         {
           id: 3,
@@ -97,7 +102,9 @@ class App extends Component {
           loss_type: "mse",
           loss: 0.5,
           accuracy: 99,
-          language: "파이썬"
+          language: "파이썬",
+          date_create: "20210119",
+          date_modify: "20210121"
         },
         {
           id: 4,
@@ -106,14 +113,31 @@ class App extends Component {
           loss_type: "mse",
           loss: 2,
           accuracy: 97,
-          language: "파이썬"
+          language: "파이썬",
+          date_create: "20210120",
+          date_modify: "20210121"
         }
       ]
     };
+
+    this.handleKeywordChange = this.handleKeywordChange.bind(this);
+  }
+
+  handleKeywordChange(e) {
+    this.setState({
+      [e.target.name]: e.target.value
+    });
   }
 
   render(){
     const { classes } = this.props;
+
+    const filteredComponents = (data) => {
+      data = data.filter((c) => {
+        return c.name.indexOf(this.state.searchKeyword) > -1;
+      })
+      return data;
+    }
 
     return(
       <div className={classes.root}>
@@ -128,24 +152,28 @@ class App extends Component {
               <MenuIcon />
             </IconButton>
             <Typography className={classes.title} variant="h6" noWrap>
-              Material-UI
+              머신 러닝 데이터 분석 관리
             </Typography>
             <div className={classes.search}>
               <div className={classes.searchIcon}>
                 <SearchIcon />
               </div>
               <InputBase
-                placeholder="Search…"
+                placeholder="검색하기"
                 classes={{
                   root: classes.inputRoot,
                   input: classes.inputInput,
                 }}
+                name="searchKeyword"
+                value={this.state.searchKeyword}
+                onChange={this.handleKeywordChange}
                 inputProps={{ 'aria-label': 'search' }}
               />
             </div>
           </Toolbar>
         </AppBar>
-        <ModelDatas datas={this.state.datas}></ModelDatas>
+        
+        <ModelDatas datas={filteredComponents(this.state.datas)} searchKeyword={this.state.searchKeyword}></ModelDatas>
       </div>
     )
   }

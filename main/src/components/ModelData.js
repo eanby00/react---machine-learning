@@ -18,6 +18,8 @@ class ModelData extends Component {
                 <TableCell>{this.state.data.loss}</TableCell>
                 <TableCell>{this.state.data.accuracy}</TableCell>
                 <TableCell>{this.state.data.language}</TableCell>
+                <TableCell>{this.state.data.date_create}</TableCell>
+                <TableCell>{this.state.data.date_modify}</TableCell>
                 <TableCell><button>확인</button></TableCell>
             </TableRow>
         );
