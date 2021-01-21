@@ -30,7 +30,14 @@ class ModelDatas extends Component{
       const { classes } = this.props;
       var lists = [];
       for (var i in this.props.datas){
-        lists.push(<ModelData key={this.props.datas[i].id} data={this.props.datas[i]}></ModelData>)
+        lists.push(
+        <ModelData
+          key={this.props.datas[i].id}
+          data={this.props.datas[i]}
+          onDeleteData={function(e) {
+            this.props.onDeleteData(e);
+          }.bind(this)}>
+        </ModelData>)
       }
       
 
@@ -49,6 +56,7 @@ class ModelDatas extends Component{
                   <TableCell>생성 날짜</TableCell>
                   <TableCell>수정 날짜</TableCell>
                   <TableCell>확인</TableCell>
+                  <TableCell>삭제</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>

@@ -9,6 +9,7 @@ class ModelData extends Component {
             data: this.props.data
         };
     }
+
     render(){
         return(
             <TableRow>
@@ -21,6 +22,13 @@ class ModelData extends Component {
                 <TableCell>{this.state.data.date_create}</TableCell>
                 <TableCell>{this.state.data.date_modify}</TableCell>
                 <TableCell><button>확인</button></TableCell>
+                <TableCell>
+                    <button
+                        onClick={function(e) {
+                            e.preventDefault();
+                            this.props.onDeleteData(this.state.data.id);
+                        }.bind(this)}>삭제</button>
+                </TableCell>
             </TableRow>
         );
     }

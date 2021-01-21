@@ -82,7 +82,9 @@ class App extends Component {
           accuracy: 99.5,
           language: "파이썬",
           date_create: "20210121",
-          date_modify: "20210121"
+          date_modify: "20210121",
+          isDeleted: false,
+          deleted_date: NaN
         },
         {
           id: 2,
@@ -93,7 +95,9 @@ class App extends Component {
           accuracy: 98,
           language: "파이썬",
           date_create: "20210121",
-          date_modify: "20210121"
+          date_modify: "20210121",
+          isDeleted: false,
+          deleted_date: NaN
         },
         {
           id: 3,
@@ -104,7 +108,9 @@ class App extends Component {
           accuracy: 99,
           language: "파이썬",
           date_create: "20210119",
-          date_modify: "20210121"
+          date_modify: "20210121",
+          isDeleted: false,
+          deleted_date: NaN
         },
         {
           id: 4,
@@ -115,18 +121,31 @@ class App extends Component {
           accuracy: 97,
           language: "파이썬",
           date_create: "20210120",
-          date_modify: "20210121"
+          date_modify: "20210121",
+          isDeleted: false,
+          deleted_date: NaN
         }
       ]
     };
 
-    this.handleKeywordChange = this.handleKeywordChange.bind(this);
+    this.handleValueChange = this.handleValueChange.bind(this);
   }
 
-  handleKeywordChange(e) {
+  handleValueChange(e) {
     this.setState({
       [e.target.name]: e.target.value
     });
+  }
+
+  currentTime() {
+    let now = new Date();
+    let year = String(now.getFullYear());
+    let month = String(now.getMonth() + 1);
+    if (month.length === 1) {
+      month = "0"+month;
+    }
+    let date = String(now.getDate());
+    return year+month+date;
   }
 
   render(){
@@ -166,14 +185,29 @@ class App extends Component {
                 }}
                 name="searchKeyword"
                 value={this.state.searchKeyword}
-                onChange={this.handleKeywordChange}
+                onChange={this.handleValueChange}
                 inputProps={{ 'aria-label': 'search' }}
               />
             </div>
           </Toolbar>
         </AppBar>
         
-        <ModelDatas datas={filteredComponents(this.state.datas)} searchKeyword={this.state.searchKeyword}></ModelDatas>
+        <ModelDatas
+          datas={filteredComponents(this.state.datas)}
+          searchKeyword={this.state.searchKeyword}
+          onDeleteData={function(e){
+            for (let i in this.state.datas){
+              let newDatas = Array.from(this.state.datas);
+              if (newDatas[i].id === e){
+                newDatas[i].isDeleted = true;
+                newDatas[i].deleted_date = this.currentTime();
+                this.setState({
+                  datas: newDatas
+                });
+              }
+            }
+          }.bind(this)}>
+        </ModelDatas>
       </div>
     )
   }
