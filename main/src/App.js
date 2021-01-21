@@ -153,6 +153,9 @@ class App extends Component {
 
     const filteredComponents = (data) => {
       data = data.filter((c) => {
+        return c.isDeleted === false;
+      })
+      data = data.filter((c) => {
         return c.name.indexOf(this.state.searchKeyword) > -1;
       })
       return data;
