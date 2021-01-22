@@ -24,7 +24,7 @@ class ModelData extends Component {
                 <TableCell>{this.state.data.date_modify}</TableCell>
                 <TableCell><Button variant="contained" color="primary">확인</Button></TableCell>
                 <TableCell>
-                    <Button variant="contained" color="primary" onClick={function(e) {
+                    <Button variant="contained" color="secondary" onClick={function(e) {
                                 e.preventDefault();
                                 this.props.onDeleteData(this.state.data.id)
                             }.bind(this)}>삭제</Button>
