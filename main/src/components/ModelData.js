@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import DataDelete from "./DataDelete";
 import TableRow from "@material-ui/core/TableRow";
 import TableCell from "@material-ui/core/TableCell";
 import Button from "@material-ui/core/Button";
@@ -25,12 +24,10 @@ class ModelData extends Component {
                 <TableCell>{this.state.data.date_modify}</TableCell>
                 <TableCell><Button variant="contained" color="primary">확인</Button></TableCell>
                 <TableCell>
-                    <DataDelete
-                        data={this.state.data}
-                        onDeleteData={function(e){
-                            this.props.onDeleteData(e);
-                        }.bind(this)}>
-                    </DataDelete>
+                    <Button variant="contained" color="primary" onClick={function(e) {
+                                e.preventDefault();
+                                this.props.onDeleteData(this.state.data.id)
+                            }.bind(this)}>삭제</Button>
                 </TableCell>
             </TableRow>
         );

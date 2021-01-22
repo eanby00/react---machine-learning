@@ -1,16 +1,14 @@
 import React, { Component } from "react";
 import './App.css';
-import "./components/ModelDatas";
 import ModelDatas from "./components/ModelDatas";
 
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import InputBase from '@material-ui/core/InputBase';
 import { fade, withStyles } from '@material-ui/core/styles';
-import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
+
 
 const styles = theme => ({
   root: {
@@ -67,6 +65,8 @@ const styles = theme => ({
   },
 });
 
+
+
 class App extends Component {
   constructor(props){
     super(props);
@@ -84,7 +84,8 @@ class App extends Component {
           date_create: "20210121",
           date_modify: "20210121",
           isDeleted: false,
-          deleted_date: NaN
+          deleted_date: NaN,
+          code: ""
         },
         {
           id: 2,
@@ -97,7 +98,8 @@ class App extends Component {
           date_create: "20210121",
           date_modify: "20210121",
           isDeleted: false,
-          deleted_date: NaN
+          deleted_date: NaN,
+          code: ""
         },
         {
           id: 3,
@@ -110,7 +112,8 @@ class App extends Component {
           date_create: "20210119",
           date_modify: "20210121",
           isDeleted: false,
-          deleted_date: NaN
+          deleted_date: NaN,
+          code: ""
         },
         {
           id: 4,
@@ -123,13 +126,170 @@ class App extends Component {
           date_create: "20210120",
           date_modify: "20210121",
           isDeleted: false,
-          deleted_date: NaN
+          deleted_date: NaN,
+          code: ""
+        },
+        {
+          id: 5,
+          name: "샘플5",
+          type: "회귀",
+          loss_type: "mse",
+          loss: 1,
+          accuracy: 98,
+          language: "파이썬",
+          date_create: "20210121",
+          date_modify: "20210121",
+          isDeleted: false,
+          deleted_date: NaN,
+          code: ""
+        },
+        {
+          id: 6,
+          name: "샘플6",
+          type: "회귀",
+          loss_type: "mse",
+          loss: 1,
+          accuracy: 98,
+          language: "파이썬",
+          date_create: "20210121",
+          date_modify: "20210121",
+          isDeleted: false,
+          deleted_date: NaN,
+          code: ""
+        },
+        {
+          id: 7,
+          name: "샘플7",
+          type: "회귀",
+          loss_type: "mse",
+          loss: 1,
+          accuracy: 98,
+          language: "파이썬",
+          date_create: "20210121",
+          date_modify: "20210121",
+          isDeleted: false,
+          deleted_date: NaN,
+          code: ""
+        },
+        {
+          id: 8,
+          name: "샘플8",
+          type: "회귀",
+          loss_type: "mse",
+          loss: 1,
+          accuracy: 98,
+          language: "파이썬",
+          date_create: "20210121",
+          date_modify: "20210121",
+          isDeleted: false,
+          deleted_date: NaN,
+          code: ""
+        },
+        {
+          id: 9,
+          name: "샘플9",
+          type: "회귀",
+          loss_type: "mse",
+          loss: 1,
+          accuracy: 98,
+          language: "파이썬",
+          date_create: "20210121",
+          date_modify: "20210121",
+          isDeleted: false,
+          deleted_date: NaN,
+          code: ""
+        },
+        {
+          id: 10,
+          name: "샘플10",
+          type: "회귀",
+          loss_type: "mse",
+          loss: 1,
+          accuracy: 98,
+          language: "파이썬",
+          date_create: "20210121",
+          date_modify: "20210121",
+          isDeleted: false,
+          deleted_date: NaN,
+          code: ""
+        },
+        {
+          id: 11,
+          name: "샘플11",
+          type: "회귀",
+          loss_type: "mse",
+          loss: 1,
+          accuracy: 98,
+          language: "파이썬",
+          date_create: "20210121",
+          date_modify: "20210121",
+          isDeleted: false,
+          deleted_date: NaN,
+          code: ""
+        },
+        {
+          id: 12,
+          name: "샘플12",
+          type: "회귀",
+          loss_type: "mse",
+          loss: 1,
+          accuracy: 98,
+          language: "파이썬",
+          date_create: "20210121",
+          date_modify: "20210121",
+          isDeleted: false,
+          deleted_date: NaN,
+          code: ""
+        },
+        {
+          id: 13,
+          name: "샘플13",
+          type: "회귀",
+          loss_type: "mse",
+          loss: 1,
+          accuracy: 98,
+          language: "파이썬",
+          date_create: "20210121",
+          date_modify: "20210121",
+          isDeleted: false,
+          deleted_date: NaN,
+          code: ""
+        },
+        {
+          id: 14,
+          name: "샘플14",
+          type: "회귀",
+          loss_type: "mse",
+          loss: 1,
+          accuracy: 98,
+          language: "파이썬",
+          date_create: "20210121",
+          date_modify: "20210121",
+          isDeleted: false,
+          deleted_date: NaN,
+          code: ""
+        },
+        {
+          id: 15,
+          name: "샘플15",
+          type: "회귀",
+          loss_type: "mse",
+          loss: 1,
+          accuracy: 98,
+          language: "파이썬",
+          date_create: "20210121",
+          date_modify: "20210121",
+          isDeleted: false,
+          deleted_date: NaN,
+          code: ""
         }
       ]
     };
 
     this.handleValueChange = this.handleValueChange.bind(this);
   }
+
+  
 
   handleValueChange(e) {
     this.setState({
@@ -165,14 +325,6 @@ class App extends Component {
       <div className={classes.root}>
         <AppBar position="static">
           <Toolbar>
-            <IconButton
-              edge="start"
-              className={classes.menuButton}
-              color="inherit"
-              aria-label="open drawer"
-            >
-              <MenuIcon />
-            </IconButton>
             <Typography className={classes.title} variant="h6" noWrap>
               머신 러닝 데이터 분석 관리
             </Typography>
