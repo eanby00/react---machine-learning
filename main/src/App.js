@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import './App.css';
 import ModelDatas from "./components/ModelDatas";
 
+import Button from "@material-ui/core/Button";
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
@@ -23,6 +24,9 @@ const styles = theme => ({
     [theme.breakpoints.up('sm')]: {
       display: 'block',
     },
+  },
+  trash: {
+    marginRight: theme.spacing(2)
   },
   search: {
     position: 'relative',
@@ -283,7 +287,8 @@ class App extends Component {
           deleted_date: NaN,
           code: ""
         }
-      ]
+      ],
+      menu_type: "data"
     };
 
     this.handleValueChange = this.handleValueChange.bind(this);
@@ -312,9 +317,15 @@ class App extends Component {
     const { classes } = this.props;
 
     const filteredComponents = (data) => {
-      data = data.filter((c) => {
-        return c.isDeleted === false;
-      })
+      if(this.state.menu_type === "data"){
+        data = data.filter((c) => {
+          return c.isDeleted === false;
+        })
+      } else if (this.state.menu_type === "removed"){
+        data = data.filter((c) => {
+          return c.isDeleted === true;
+        })
+      }
       data = data.filter((c) => {
         return c.name.indexOf(this.state.searchKeyword) > -1;
       })
@@ -328,6 +339,15 @@ class App extends Component {
             <Typography className={classes.title} variant="h6" noWrap>
               머신 러닝 데이터 분석 관리
             </Typography>
+            <Button className={classes.trash} variant="contained" onClick={function(){
+              this.setState({menu_type:"all"})
+            }.bind(this)}>전체보기</Button>
+            <Button className={classes.trash} variant="contained" onClick={function(){
+              this.setState({menu_type:"data"})
+            }.bind(this)}>데이터 확인</Button>
+            <Button className={classes.trash} variant="contained" onClick={function(){
+              this.setState({menu_type:"removed"})
+            }.bind(this)}>휴지통</Button>
             <div className={classes.search}>
               <div className={classes.searchIcon}>
                 <SearchIcon />
@@ -350,12 +370,17 @@ class App extends Component {
         <ModelDatas
           datas={filteredComponents(this.state.datas)}
           searchKeyword={this.state.searchKeyword}
-          onDeleteData={function(e){
+          onChangeData={function(e){
             for (let i in this.state.datas){
               let newDatas = Array.from(this.state.datas);
               if (newDatas[i].id === e){
-                newDatas[i].isDeleted = true;
-                newDatas[i].deleted_date = this.currentTime();
+                if (newDatas[i].isDeleted === false) {
+                  newDatas[i].isDeleted = true;
+                  newDatas[i].deleted_date = this.currentTime();
+                } else {
+                  newDatas[i].isDeleted = false;
+                  newDatas[i].deleted_date = NaN;
+                }
                 this.setState({
                   datas: newDatas
                 });

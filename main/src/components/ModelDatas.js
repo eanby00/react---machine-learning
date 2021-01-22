@@ -34,8 +34,8 @@ class ModelDatas extends Component{
         <ModelData
           key={this.props.datas[i].id}
           data={this.props.datas[i]}
-          onDeleteData={function(e) {
-            this.props.onDeleteData(e);
+          onChangeData={function(e) {
+            this.props.onChangeData(e);
           }.bind(this)}>
         </ModelData>)
       }

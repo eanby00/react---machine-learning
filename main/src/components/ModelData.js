@@ -12,6 +12,12 @@ class ModelData extends Component {
     }
 
     render(){
+        var button = null;
+        if (this.state.data.isDeleted === false){
+            button = "삭제";
+        } else {
+            button = "복원";
+        }
         return(
             <TableRow>
                 <TableCell>{this.state.data.name}</TableCell>
@@ -26,8 +32,8 @@ class ModelData extends Component {
                 <TableCell>
                     <Button variant="contained" color="secondary" onClick={function(e) {
                                 e.preventDefault();
-                                this.props.onDeleteData(this.state.data.id)
-                            }.bind(this)}>삭제</Button>
+                                this.props.onChangeData(this.state.data.id)
+                            }.bind(this)}>{button}</Button>
                 </TableCell>
             </TableRow>
         );
