@@ -2,6 +2,12 @@ import React, { Component } from "react";
 import TableRow from "@material-ui/core/TableRow";
 import TableCell from "@material-ui/core/TableCell";
 import Button from "@material-ui/core/Button";
+import DeleteData from "./DeleteData";
+
+import { ThemeProvider } from "@material-ui/core/styles";
+import { unstable_createMuiStrictModeTheme } from "@material-ui/core/styles";
+
+const theme = unstable_createMuiStrictModeTheme();
 
 class ModelData extends Component {
     constructor(props){
@@ -14,9 +20,16 @@ class ModelData extends Component {
     render(){
         var button = null;
         if (this.state.data.isDeleted === false){
-            button = "삭제";
+            button = <ThemeProvider theme={theme}>
+                        <DeleteData data={this.state.data} onChangeData={function(e) {
+                            this.props.onChangeData(e);
+                        }.bind(this)}></DeleteData>
+                     </ThemeProvider>;
         } else {
-            button = "복원";
+            button = <Button variant="contained" color="secondary" onClick={function(e) {
+                        e.preventDefault();
+                        this.props.onChangeData(this.state.data.id)
+                     }.bind(this)}>복원</Button>;
         }
         return(
             <TableRow>
@@ -30,10 +43,7 @@ class ModelData extends Component {
                 <TableCell>{this.state.data.date_modify}</TableCell>
                 <TableCell><Button variant="contained" color="primary">확인</Button></TableCell>
                 <TableCell>
-                    <Button variant="contained" color="secondary" onClick={function(e) {
-                                e.preventDefault();
-                                this.props.onChangeData(this.state.data.id)
-                            }.bind(this)}>{button}</Button>
+                    {button}
                 </TableCell>
             </TableRow>
         );
