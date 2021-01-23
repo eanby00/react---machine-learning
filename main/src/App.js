@@ -125,6 +125,14 @@ const styles = theme => ({
       },
     },
   },
+
+  drawerMenu: {
+    marginLeft: 20
+  },
+
+  drawerSubMenu: {
+    marginLeft: 50
+  }
 });
 
 
@@ -455,15 +463,18 @@ class App extends Component {
             </IconButton>
           </div>
           <Divider />
-          <List>
-            {['전체보기', '데이터 확인', '휴지통'].map((text, index) => (
-              <ListItem button key={text}>
-                <ListItemText primary={text} onClick={function(){
-                  this.setState({menu_type:menu_type_list[index]})
-                }.bind(this)}/>
-              </ListItem>
-            ))}
-          </List>
+            <List>
+                <ListItemText primary="보기" className={classes.drawerMenu}/>
+                <List>
+                  {['전체보기', '데이터 확인', '휴지통'].map((text, index) => (
+                    <ListItem button key={text}>
+                      <ListItemText primary={text} className={classes.drawerSubMenu} onClick={function(){
+                        this.setState({menu_type:menu_type_list[index]})
+                      }.bind(this)}/>
+                    </ListItem>
+                  ))}
+                </List>
+            </List>
           <Divider />
         </Drawer>
 
