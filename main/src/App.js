@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import './App.css';
 import ModelDatas from "./components/ModelDatas";
 
-import Button from "@material-ui/core/Button";
+// import Button from "@material-ui/core/Button";
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
@@ -10,13 +10,42 @@ import InputBase from '@material-ui/core/InputBase';
 import { fade, withStyles } from '@material-ui/core/styles';
 import SearchIcon from '@material-ui/icons/Search';
 
+import clsx from 'clsx';
+import IconButton from '@material-ui/core/IconButton';
+import MenuIcon from '@material-ui/icons/Menu';
+import Drawer from '@material-ui/core/Drawer';
+import List from '@material-ui/core/List';
+import Divider from '@material-ui/core/Divider';
+import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
+import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+
+const drawerWidth = 240;
 
 const styles = theme => ({
   root: {
     flexGrow: 1,
   },
+  appBar: {
+    transition: theme.transitions.create(['margin', 'width'], {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.leavingScreen,
+    }),
+  },
+  appBarShift: {
+    width: `calc(100% - ${drawerWidth}px)`,
+    marginLeft: drawerWidth,
+    transition: theme.transitions.create(['margin', 'width'], {
+      easing: theme.transitions.easing.easeOut,
+      duration: theme.transitions.duration.enteringScreen,
+    }),
+  },
   menuButton: {
     marginRight: theme.spacing(2),
+  },
+  hide: {
+    display: 'none',
   },
   title: {
     flexGrow: 1,
@@ -24,9 +53,6 @@ const styles = theme => ({
     [theme.breakpoints.up('sm')]: {
       display: 'block',
     },
-  },
-  trash: {
-    marginRight: theme.spacing(2)
   },
   search: {
     position: 'relative',
@@ -54,6 +80,38 @@ const styles = theme => ({
   inputRoot: {
     color: 'inherit',
   },
+  drawer: {
+    width: drawerWidth,
+    flexShrink: 0,
+  },
+  drawerPaper: {
+    width: drawerWidth,
+  },
+  drawerHeader: {
+    display: 'flex',
+    alignItems: 'center',
+    padding: theme.spacing(0, 1),
+    // necessary for content to be below app bar
+    ...theme.mixins.toolbar,
+    justifyContent: 'flex-end',
+  },
+  content: {
+    flexGrow: 1,
+    padding: theme.spacing(3),
+    transition: theme.transitions.create('margin', {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.leavingScreen,
+    }),
+  },
+  contentShift: {
+    width: `calc(100% - ${drawerWidth}px)`,
+    marginLeft: drawerWidth,
+    transition: theme.transitions.create('margin', {
+      easing: theme.transitions.easing.easeOut,
+      duration: theme.transitions.duration.enteringScreen,
+    }),
+  },
+
   inputInput: {
     padding: theme.spacing(1, 1, 1, 0),
     // vertical padding + font size from searchIcon
@@ -288,10 +346,20 @@ class App extends Component {
           code: ""
         }
       ],
-      menu_type: "data"
+      menu_type: "data",
+      open: false
     };
 
     this.handleValueChange = this.handleValueChange.bind(this);
+    this.handleDrawerOpen = this.handleDrawerOpen.bind(this);
+    this.handleDrawerClose = this.handleDrawerClose.bind(this);
+  }
+
+  handleDrawerOpen() {
+    this.setState({open: true});
+  }
+  handleDrawerClose() {
+    this.setState({open: false})
   }
 
   
@@ -331,23 +399,29 @@ class App extends Component {
       })
       return data;
     }
-
+    var menu_type_list = ["all", "data", "removed"];
     return(
       <div className={classes.root}>
-        <AppBar position="static">
+        <AppBar
+          position="static"
+          className={clsx(classes.appBar, {
+            [classes.appBarShift]: this.state.open,
+          })}
+        >
           <Toolbar>
+            <IconButton
+              color="inherit"
+              aria-label="open drawer"
+              onClick={this.handleDrawerOpen}
+              edge="start"
+              className={clsx(classes.menuButton, this.state.open && classes.hide)}
+            >
+              <MenuIcon />
+            </IconButton>
             <Typography className={classes.title} variant="h6" noWrap>
               머신 러닝 데이터 분석 관리
             </Typography>
-            <Button className={classes.trash} variant="contained" onClick={function(){
-              this.setState({menu_type:"all"})
-            }.bind(this)}>전체보기</Button>
-            <Button className={classes.trash} variant="contained" onClick={function(){
-              this.setState({menu_type:"data"})
-            }.bind(this)}>데이터 확인</Button>
-            <Button className={classes.trash} variant="contained" onClick={function(){
-              this.setState({menu_type:"removed"})
-            }.bind(this)}>휴지통</Button>
+
             <div className={classes.search}>
               <div className={classes.searchIcon}>
                 <SearchIcon />
@@ -366,28 +440,60 @@ class App extends Component {
             </div>
           </Toolbar>
         </AppBar>
-        
-        <ModelDatas
-          datas={filteredComponents(this.state.datas)}
-          searchKeyword={this.state.searchKeyword}
-          onChangeData={function(e){
-            for (let i in this.state.datas){
-              let newDatas = Array.from(this.state.datas);
-              if (newDatas[i].id === e){
-                if (newDatas[i].isDeleted === false) {
-                  newDatas[i].isDeleted = true;
-                  newDatas[i].deleted_date = this.currentTime();
-                } else {
-                  newDatas[i].isDeleted = false;
-                  newDatas[i].deleted_date = NaN;
+        <Drawer
+          className={classes.drawer}
+          variant="persistent"
+          anchor="left"
+          open={this.state.open}
+          classes={{
+            paper: classes.drawerPaper,
+          }}
+        >
+          <div className={classes.drawerHeader}>
+            <IconButton onClick={this.handleDrawerClose}>
+              {styles.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
+            </IconButton>
+          </div>
+          <Divider />
+          <List>
+            {['전체보기', '데이터 확인', '휴지통'].map((text, index) => (
+              <ListItem button key={text}>
+                <ListItemText primary={text} onClick={function(){
+                  this.setState({menu_type:menu_type_list[index]})
+                }.bind(this)}/>
+              </ListItem>
+            ))}
+          </List>
+          <Divider />
+        </Drawer>
+
+        <main
+          className={clsx(classes.content, {
+            [classes.contentShift]: this.state.open,
+        })}>
+          <div className={classes.drawerHeader} />
+          <ModelDatas
+            datas={filteredComponents(this.state.datas)}
+            searchKeyword={this.state.searchKeyword}
+            onChangeData={function(e){
+              for (let i in this.state.datas){
+                let newDatas = Array.from(this.state.datas);
+                if (newDatas[i].id === e){
+                  if (newDatas[i].isDeleted === false) {
+                    newDatas[i].isDeleted = true;
+                    newDatas[i].deleted_date = this.currentTime();
+                  } else {
+                    newDatas[i].isDeleted = false;
+                    newDatas[i].deleted_date = NaN;
+                  }
+                  this.setState({
+                    datas: newDatas
+                  });
                 }
-                this.setState({
-                  datas: newDatas
-                });
               }
-            }
-          }.bind(this)}>
-        </ModelDatas>
+            }.bind(this)}>
+          </ModelDatas>
+        </main>
       </div>
     )
   }
