@@ -9,6 +9,7 @@ import { unstable_createMuiStrictModeTheme } from "@material-ui/core/styles";
 
 const theme = unstable_createMuiStrictModeTheme();
 
+
 class ModelData extends Component {
     constructor(props){
         super(props);
@@ -21,9 +22,8 @@ class ModelData extends Component {
         var button = null;
         if (this.state.data.isDeleted === false){
             button = <ThemeProvider theme={theme}>
-                        <DeleteData data={this.state.data} onChangeData={function(e) {
-                            this.props.onChangeData(e);
-                        }.bind(this)}></DeleteData>
+                        <DeleteData data={this.props.data} onChangeData={function(e) {
+                        this.props.onChangeData(e)}.bind(this)}/>
                      </ThemeProvider>;
         } else {
             button = <Button variant="contained" color="secondary" onClick={function(e) {
