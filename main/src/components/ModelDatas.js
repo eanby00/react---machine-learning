@@ -35,7 +35,7 @@ const ModelDatas = (props) => {
     for (var i in props.datas){
       lists.push(<ModelData key={props.datas[i].id} data={props.datas[i]} onChangeData={ChangeData}></ModelData>)
     }
-
+    
     return(
         <div className={classes.root}>
             <Paper className={classes.paper}>

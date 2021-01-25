@@ -1,0 +1,4 @@
+이벤트에 파라미터 전달 시 
+onClick={(event) => onChangeType(event, index)}와 같은 형식으로 전달해야 함
+
+onChangeType은 함수, index는 전달하고 싶은 데이터
