@@ -21,6 +21,8 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 
+import _ from "lodash";
+
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
@@ -153,7 +155,8 @@ const App = () => {
             date_modify: "20210121",
             isDeleted: false,
             deleted_date: NaN,
-            code: ""
+            code: "",
+            dataSource: ""
         },
         {
             id: 2,
@@ -167,7 +170,8 @@ const App = () => {
             date_modify: "20210121",
             isDeleted: false,
             deleted_date: NaN,
-            code: ""
+            code: "",
+            dataSource: ""
         },
         {
             id: 3,
@@ -181,7 +185,8 @@ const App = () => {
             date_modify: "20210121",
             isDeleted: false,
             deleted_date: NaN,
-            code: ""
+            code: "",
+            dataSource: ""
         },
         {
             id: 4,
@@ -195,7 +200,8 @@ const App = () => {
             date_modify: "20210121",
             isDeleted: false,
             deleted_date: NaN,
-            code: ""
+            code: "",
+            dataSource: ""
         },
         {
             id: 5,
@@ -209,7 +215,8 @@ const App = () => {
             date_modify: "20210121",
             isDeleted: false,
             deleted_date: NaN,
-            code: ""
+            code: "",
+            dataSource: ""
         },
         {
             id: 6,
@@ -223,7 +230,8 @@ const App = () => {
             date_modify: "20210121",
             isDeleted: false,
             deleted_date: NaN,
-            code: ""
+            code: "",
+            dataSource: ""
         },
         {
             id: 7,
@@ -237,7 +245,8 @@ const App = () => {
             date_modify: "20210121",
             isDeleted: false,
             deleted_date: NaN,
-            code: ""
+            code: "",
+            dataSource: ""
         },
         {
             id: 8,
@@ -251,7 +260,8 @@ const App = () => {
             date_modify: "20210121",
             isDeleted: false,
             deleted_date: NaN,
-            code: ""
+            code: "",
+            dataSource: ""
         },
         {
             id: 9,
@@ -265,7 +275,8 @@ const App = () => {
             date_modify: "20210121",
             isDeleted: false,
             deleted_date: NaN,
-            code: ""
+            code: "",
+            dataSource: ""
         },
         {
             id: 10,
@@ -279,7 +290,8 @@ const App = () => {
             date_modify: "20210121",
             isDeleted: false,
             deleted_date: NaN,
-            code: ""
+            code: "",
+            dataSource: ""
         },
         {
             id: 11,
@@ -293,7 +305,8 @@ const App = () => {
             date_modify: "20210121",
             isDeleted: false,
             deleted_date: NaN,
-            code: ""
+            code: "",
+            dataSource: ""
         },
         {
             id: 12,
@@ -307,7 +320,8 @@ const App = () => {
             date_modify: "20210121",
             isDeleted: false,
             deleted_date: NaN,
-            code: ""
+            code: "",
+            dataSource: ""
         },
         {
             id: 13,
@@ -321,7 +335,8 @@ const App = () => {
             date_modify: "20210121",
             isDeleted: false,
             deleted_date: NaN,
-            code: ""
+            code: "",
+            dataSource: ""
         },
         {
             id: 14,
@@ -335,7 +350,8 @@ const App = () => {
             date_modify: "20210121",
             isDeleted: false,
             deleted_date: NaN,
-            code: ""
+            code: "",
+            dataSource: ""
         },
         {
             id: 15,
@@ -349,7 +365,8 @@ const App = () => {
             date_modify: "20210121",
             isDeleted: false,
             deleted_date: NaN,
-            code: ""
+            code: "",
+            dataSource: ""
         }
         ]);
     const [menu_type, setMenuType] = useState("data");
@@ -382,8 +399,8 @@ const App = () => {
     }
 
     const onChangeData = (e) => {
+        let newDatas = Array.from(datas);
         for (let i in datas){
-            let newDatas = Array.from(datas);
             if (newDatas[i].id === e){
                 if (newDatas[i].isDeleted === false) {
                 newDatas[i].isDeleted = true;
@@ -416,6 +433,16 @@ const App = () => {
     const onChangeType = (e, index) => {
         let menu_type_list = ["all", "data", "removed"];
         setMenuType(menu_type_list[index]);
+    }
+
+    const onChangeSort = (dataType, sortType) => {
+      let newDatas = Array.from(datas);
+      if (sortType){
+        newDatas = _.orderBy(newDatas, [dataType], ["asc"])
+      } else {
+        newDatas = _.orderBy(newDatas, [dataType], ["desc"])
+      }
+      setDatas(newDatas);
     }
 
     return(
@@ -494,7 +521,8 @@ const App = () => {
                 <ModelDatas
                     datas={filteredComponents(datas)}
                     searchKeyword={searchKeyword}
-                    onChangeData={onChangeData}>
+                    onChangeData={onChangeData}
+                    onChangeSortType={onChangeSort}>
                 </ModelDatas>
             </main>
         </div>
