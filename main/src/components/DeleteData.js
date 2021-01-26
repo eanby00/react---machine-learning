@@ -26,16 +26,16 @@ const DeleteData = (props) => {
     return (
         <div>
             <Button variant="contained" color="secondary" onClick={handleClickOpen}>삭제</Button>
-                <Dialog open={open} onClose={handleClose}>
-                    <DialogTitle onClose={handleClose}>삭제 경고</DialogTitle>
-                    <DialogContent>
-                        <Typography gutterBottom>선택한 데이터가 삭제됩니다.</Typography>
-                    </DialogContent>
-                    <DialogActions>
+            <Dialog open={open} onClose={handleClose}>
+                <DialogTitle onClose={handleClose}>삭제 경고</DialogTitle>
+                <DialogContent>
+                    <Typography gutterBottom>선택한 데이터가 삭제됩니다.</Typography>
+                </DialogContent>
+                <DialogActions>
                     <Button variant="contained" color="primary" onClick={deleteData}>삭제</Button>
                     <Button variant="outlined" color="primary" onClick={handleClose}>닫기</Button>
-                    </DialogActions>
-                </Dialog>
+                </DialogActions>
+            </Dialog>
         </div>
     )
 }

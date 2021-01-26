@@ -22,8 +22,14 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 
 import _ from "lodash";
+import DetailSearch from "./components/DetailSearch";
+
+import { ThemeProvider } from "@material-ui/core/styles";
+import { unstable_createMuiStrictModeTheme } from "@material-ui/core/styles";
 
 const drawerWidth = 240;
+
+const theme_preventerror = unstable_createMuiStrictModeTheme();
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -134,14 +140,21 @@ const useStyles = makeStyles((theme) => ({
     
       drawerSubMenu: {
         marginLeft: 50
-      }
+      },
 }));
 
 const App = () => {
     const classes = useStyles();
     const theme = useTheme();
     
-    const [searchKeyword, setSearchKeyword] = useState("");
+    const [searchKeyword, setSearchKeyword] = useState({
+      name: "",
+      type: "",
+      loss_type: "",
+      language: "",
+      date_create: "",
+      date_modify: ""
+    });
     const [datas, setDatas] = useState([
         {
             id: 1,
@@ -371,6 +384,7 @@ const App = () => {
         ]);
     const [menu_type, setMenuType] = useState("data");
     const [open, setOpen] = useState(false);
+    const [searchType, setSearchType] = useState("name");
     
 
     const handleDrawerOpen = () => {
@@ -381,10 +395,14 @@ const App = () => {
         setOpen(false);
     }
     
-      
-    
-    const handleSearchKeywordChange = (e) => {
-        setSearchKeyword(e.target.value);
+    const handleSearchKeywordNameChange = (e) => {
+        setSearchKeyword({name: e.target.value, type: "", loss_type: "", language: "", date_create: "", date_modify: ""});
+        setSearchType("name");
+    }
+
+    const onChangeSearchKeyword = (e) => {
+      setSearchKeyword(e);
+      setSearchType("all");
     }
     
     const currentTime = () => {
@@ -415,7 +433,7 @@ const App = () => {
     }
 
     const filteredComponents = (data) => {
-        if(menu_type === "data"){
+        if( menu_type === "data"){
             data = data.filter((c) => {
             return c.isDeleted === false;
             })
@@ -424,9 +442,32 @@ const App = () => {
             return c.isDeleted === true;
             })
         }
-        data = data.filter((c) => {
-            return c.name.indexOf(searchKeyword) > -1;
-        })
+        if (searchType === "name") {
+          data = data.filter((c) => {
+            return c.name.indexOf(searchKeyword.name) > -1;
+          })
+        }
+        else {
+          data = data.filter((c) => {
+            return c.name.indexOf(searchKeyword.name) > -1;
+          })
+          data = data.filter((c) => {
+              return c.type.indexOf(searchKeyword.type) > -1;
+          })
+          data = data.filter((c) => {
+              return c.loss_type.indexOf(searchKeyword.loss_type) > -1;
+          })
+          data = data.filter((c) => {
+              return c.language.indexOf(searchKeyword.language) > -1;
+          })  
+          data = data.filter((c) => {
+              return c.date_create.indexOf(searchKeyword.date_create) > -1;
+          })
+          data = data.filter((c) => {
+              return c.date_modify.indexOf(searchKeyword.date_modify) > -1;
+          })
+        }
+        
         return data;
     }
 
@@ -468,21 +509,24 @@ const App = () => {
                     </Typography>
 
                     <div className={classes.search}>
-                    <div className={classes.searchIcon}>
-                    <SearchIcon />
+                      <div className={classes.searchIcon}>
+                        <SearchIcon/>
+                      </div>
+                      <InputBase
+                          placeholder="검색하기"
+                          classes={{
+                              root: classes.inputRoot,
+                              input: classes.inputInput,
+                          }}
+                          name="searchKeyword"
+                          value={searchKeyword.name}
+                          onChange={handleSearchKeywordNameChange}
+                          inputProps={{ 'aria-label': 'search' }}
+                      />
                     </div>
-                        <InputBase
-                            placeholder="검색하기"
-                            classes={{
-                                root: classes.inputRoot,
-                                input: classes.inputInput,
-                            }}
-                            name="searchKeyword"
-                            value={searchKeyword}
-                            onChange={handleSearchKeywordChange}
-                            inputProps={{ 'aria-label': 'search' }}
-                        />
-                    </div>
+                    <ThemeProvider theme={theme_preventerror}>
+                      <DetailSearch onChangeSearchKeyword={onChangeSearchKeyword}></DetailSearch>
+                    </ThemeProvider>
                 </Toolbar>
             </AppBar>
             <Drawer

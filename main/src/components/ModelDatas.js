@@ -65,8 +65,8 @@ const ModelDatas = (props) => {
                     <TableCell><Button onClick={(event) => changeSortType(event, "language")}>언어 종류</Button></TableCell>
                     <TableCell><Button onClick={(event) => changeSortType(event, "date_create")}>생성 날짜</Button></TableCell>
                     <TableCell><Button onClick={(event) => changeSortType(event, "date_modify")}>수정 날짜</Button></TableCell>
-                    <TableCell><Button>확인</Button></TableCell>
-                    <TableCell><Button>삭제</Button></TableCell>
+                    <TableCell>확인</TableCell>
+                    <TableCell>삭제</TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
