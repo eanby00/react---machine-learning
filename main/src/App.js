@@ -162,14 +162,11 @@ const App = () => {
     const [rows, setRows] = useState([]);
     React.useEffect(() => {
       async function getData() {
-        const response = await fetch("./data.csv");
-        console.log(response);
+        const response = await fetch("./mainData.csv");
         const reader = response.body.getReader();
         const result = await reader.read();
         const decoder = new TextDecoder("utf-8");
-        console.log(result.value);
         const csv = decoder.decode(result.value);
-        console.log(csv)
         const results = Papa.parse(csv, { header: false });
         const rows = results.data;
         console.log(rows)
