@@ -162,7 +162,7 @@ const App = () => {
     const [rows, setRows] = useState([]);
     React.useEffect(() => {
       async function getData() {
-        const response = await fetch("./mainData.csv");
+        const response = await fetch("https://raw.githubusercontent.com/eanby00/react-machine-learning/master/main/src/mainData.csv");
         const reader = response.body.getReader();
         const result = await reader.read();
         const decoder = new TextDecoder("utf-8");
