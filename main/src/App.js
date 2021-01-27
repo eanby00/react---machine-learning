@@ -27,8 +27,7 @@ import DetailSearch from "./components/DetailSearch";
 import { ThemeProvider } from "@material-ui/core/styles";
 import { unstable_createMuiStrictModeTheme } from "@material-ui/core/styles";
 
-import Papa from "papaparse";
-import Table from "@material-ui/core/Table"
+import arrayData from "./mainData.json";
 
 const drawerWidth = 240;
 
@@ -159,249 +158,7 @@ const App = () => {
       date_modify: ""
     });
 
-    const [rows, setRows] = useState([]);
-    React.useEffect(() => {
-      async function getData() {
-        const response = await fetch("https://raw.githubusercontent.com/eanby00/react-machine-learning/master/main/src/mainData.csv");
-        const reader = response.body.getReader();
-        const result = await reader.read();
-        const decoder = new TextDecoder("utf-8");
-        const csv = decoder.decode(result.value);
-        const results = Papa.parse(csv, { header: false });
-        const rows = results.data;
-        console.log(rows)
-        setRows(rows);
-      }
-      getData()
-    }, [])
-    const [datas, setDatas] = useState([]);
-    // const [datas, setDatas] = useState([
-    //     {
-    //         id: 1,
-    //         name: "샘플1",
-    //         type: "회귀",
-    //         loss_type: "mse",
-    //         loss: 0.05,
-    //         accuracy: 99.5,
-    //         language: "파이썬",
-    //         date_create: "20210121",
-    //         date_modify: "20210121",
-    //         isDeleted: false,
-    //         deleted_date: NaN,
-    //         code: "",
-    //         dataSource: ""
-    //     },
-    //     {
-    //         id: 2,
-    //         name: "샘플2",
-    //         type: "회귀",
-    //         loss_type: "mse",
-    //         loss: 1,
-    //         accuracy: 98,
-    //         language: "파이썬",
-    //         date_create: "20210121",
-    //         date_modify: "20210121",
-    //         isDeleted: false,
-    //         deleted_date: NaN,
-    //         code: "",
-    //         dataSource: ""
-    //     },
-    //     {
-    //         id: 3,
-    //         name: "샘플3",
-    //         type: "회귀",
-    //         loss_type: "mse",
-    //         loss: 0.5,
-    //         accuracy: 99,
-    //         language: "파이썬",
-    //         date_create: "20210119",
-    //         date_modify: "20210121",
-    //         isDeleted: false,
-    //         deleted_date: NaN,
-    //         code: "",
-    //         dataSource: ""
-    //     },
-    //     {
-    //         id: 4,
-    //         name: "샘플4",
-    //         type: "회귀",
-    //         loss_type: "mse",
-    //         loss: 2,
-    //         accuracy: 97,
-    //         language: "파이썬",
-    //         date_create: "20210120",
-    //         date_modify: "20210121",
-    //         isDeleted: false,
-    //         deleted_date: NaN,
-    //         code: "",
-    //         dataSource: ""
-    //     },
-    //     {
-    //         id: 5,
-    //         name: "샘플5",
-    //         type: "회귀",
-    //         loss_type: "mse",
-    //         loss: 1,
-    //         accuracy: 98,
-    //         language: "파이썬",
-    //         date_create: "20210121",
-    //         date_modify: "20210121",
-    //         isDeleted: false,
-    //         deleted_date: NaN,
-    //         code: "",
-    //         dataSource: ""
-    //     },
-    //     {
-    //         id: 6,
-    //         name: "샘플6",
-    //         type: "회귀",
-    //         loss_type: "mse",
-    //         loss: 1,
-    //         accuracy: 98,
-    //         language: "파이썬",
-    //         date_create: "20210121",
-    //         date_modify: "20210121",
-    //         isDeleted: false,
-    //         deleted_date: NaN,
-    //         code: "",
-    //         dataSource: ""
-    //     },
-    //     {
-    //         id: 7,
-    //         name: "샘플7",
-    //         type: "회귀",
-    //         loss_type: "mse",
-    //         loss: 1,
-    //         accuracy: 98,
-    //         language: "파이썬",
-    //         date_create: "20210121",
-    //         date_modify: "20210121",
-    //         isDeleted: false,
-    //         deleted_date: NaN,
-    //         code: "",
-    //         dataSource: ""
-    //     },
-    //     {
-    //         id: 8,
-    //         name: "샘플8",
-    //         type: "회귀",
-    //         loss_type: "mse",
-    //         loss: 1,
-    //         accuracy: 98,
-    //         language: "파이썬",
-    //         date_create: "20210121",
-    //         date_modify: "20210121",
-    //         isDeleted: false,
-    //         deleted_date: NaN,
-    //         code: "",
-    //         dataSource: ""
-    //     },
-    //     {
-    //         id: 9,
-    //         name: "샘플9",
-    //         type: "회귀",
-    //         loss_type: "mse",
-    //         loss: 1,
-    //         accuracy: 98,
-    //         language: "파이썬",
-    //         date_create: "20210121",
-    //         date_modify: "20210121",
-    //         isDeleted: false,
-    //         deleted_date: NaN,
-    //         code: "",
-    //         dataSource: ""
-    //     },
-    //     {
-    //         id: 10,
-    //         name: "샘플10",
-    //         type: "회귀",
-    //         loss_type: "mse",
-    //         loss: 1,
-    //         accuracy: 98,
-    //         language: "파이썬",
-    //         date_create: "20210121",
-    //         date_modify: "20210121",
-    //         isDeleted: false,
-    //         deleted_date: NaN,
-    //         code: "",
-    //         dataSource: ""
-    //     },
-    //     {
-    //         id: 11,
-    //         name: "샘플11",
-    //         type: "회귀",
-    //         loss_type: "mse",
-    //         loss: 1,
-    //         accuracy: 98,
-    //         language: "파이썬",
-    //         date_create: "20210121",
-    //         date_modify: "20210121",
-    //         isDeleted: false,
-    //         deleted_date: NaN,
-    //         code: "",
-    //         dataSource: ""
-    //     },
-    //     {
-    //         id: 12,
-    //         name: "샘플12",
-    //         type: "회귀",
-    //         loss_type: "mse",
-    //         loss: 1,
-    //         accuracy: 98,
-    //         language: "파이썬",
-    //         date_create: "20210121",
-    //         date_modify: "20210121",
-    //         isDeleted: false,
-    //         deleted_date: NaN,
-    //         code: "",
-    //         dataSource: ""
-    //     },
-    //     {
-    //         id: 13,
-    //         name: "샘플13",
-    //         type: "회귀",
-    //         loss_type: "mse",
-    //         loss: 1,
-    //         accuracy: 98,
-    //         language: "파이썬",
-    //         date_create: "20210121",
-    //         date_modify: "20210121",
-    //         isDeleted: false,
-    //         deleted_date: NaN,
-    //         code: "",
-    //         dataSource: ""
-    //     },
-    //     {
-    //         id: 14,
-    //         name: "샘플14",
-    //         type: "회귀",
-    //         loss_type: "mse",
-    //         loss: 1,
-    //         accuracy: 98,
-    //         language: "파이썬",
-    //         date_create: "20210121",
-    //         date_modify: "20210121",
-    //         isDeleted: false,
-    //         deleted_date: NaN,
-    //         code: "",
-    //         dataSource: ""
-    //     },
-    //     {
-    //         id: 15,
-    //         name: "샘플15",
-    //         type: "회귀",
-    //         loss_type: "mse",
-    //         loss: 1,
-    //         accuracy: 98,
-    //         language: "파이썬",
-    //         date_create: "20210121",
-    //         date_modify: "20210121",
-    //         isDeleted: false,
-    //         deleted_date: NaN,
-    //         code: "",
-    //         dataSource: ""
-    //     }
-    //     ]);
+    const [datas, setDatas] = useState(arrayData);
     const [menu_type, setMenuType] = useState("data");
     const [open, setOpen] = useState(false);
     const [searchType, setSearchType] = useState("name");
@@ -507,90 +264,89 @@ const App = () => {
     }
 
     return(
-      <div>{rows}</div>
-        // <div className={classes.root}>
-        //     <AppBar
-        //     position="static"
-        //     className={clsx(classes.appBar, {
-        //         [classes.appBarShift]: open,
-        //     })}
-        //     >
-        //         <Toolbar>
-        //             <IconButton
-        //                 color="inherit"
-        //                 aria-label="open drawer"
-        //                 onClick={handleDrawerOpen}
-        //                 edge="start"
-        //                 className={clsx(classes.menuButton, open && classes.hide)}
-        //             >
-        //                 <MenuIcon />
-        //             </IconButton>
-        //             <Typography className={classes.title} variant="h6" noWrap>
-        //                 머신 러닝 데이터 분석 관리
-        //             </Typography>
+        <div className={classes.root}>
+            <AppBar
+            position="static"
+            className={clsx(classes.appBar, {
+                [classes.appBarShift]: open,
+            })}
+            >
+                <Toolbar>
+                    <IconButton
+                        color="inherit"
+                        aria-label="open drawer"
+                        onClick={handleDrawerOpen}
+                        edge="start"
+                        className={clsx(classes.menuButton, open && classes.hide)}
+                    >
+                        <MenuIcon />
+                    </IconButton>
+                    <Typography className={classes.title} variant="h6" noWrap>
+                        머신 러닝 데이터 분석 관리
+                    </Typography>
 
-        //             <div className={classes.search}>
-        //               <div className={classes.searchIcon}>
-        //                 <SearchIcon/>
-        //               </div>
-        //               <InputBase
-        //                   placeholder="검색하기"
-        //                   classes={{
-        //                       root: classes.inputRoot,
-        //                       input: classes.inputInput,
-        //                   }}
-        //                   name="searchKeyword"
-        //                   value={searchKeyword.name}
-        //                   onChange={handleSearchKeywordNameChange}
-        //                   inputProps={{ 'aria-label': 'search' }}
-        //               />
-        //             </div>
-        //             <ThemeProvider theme={theme_preventerror}>
-        //               <DetailSearch onChangeSearchKeyword={onChangeSearchKeyword}></DetailSearch>
-        //             </ThemeProvider>
-        //         </Toolbar>
-        //     </AppBar>
-        //     <Drawer
-        //         className={classes.drawer}
-        //         variant="persistent"
-        //         anchor="left"
-        //         open={open}
-        //         classes={{
-        //             paper: classes.drawerPaper,
-        //         }}
-        //     >
-        //         <div className={classes.drawerHeader}>
-        //             <IconButton onClick={handleDrawerClose}>
-        //                 {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
-        //             </IconButton>
-        //         </div>
-        //         <Divider />
-        //             <List>
-        //                 <ListItemText primary="보기" className={classes.drawerMenu}/>
-        //                 <List>
-        //                     {['전체보기', '데이터 확인', '휴지통'].map((text, index) => (
-        //                     <ListItem button key={text}>
-        //                         <ListItemText primary={text} className={classes.drawerSubMenu} onClick={(event) => onChangeType(event, index)}/>
-        //                     </ListItem>
-        //                     ))}
-        //                 </List>
-        //             </List>
-        //         <Divider />
-        //     </Drawer>
+                    <div className={classes.search}>
+                      <div className={classes.searchIcon}>
+                        <SearchIcon/>
+                      </div>
+                      <InputBase
+                          placeholder="검색하기"
+                          classes={{
+                              root: classes.inputRoot,
+                              input: classes.inputInput,
+                          }}
+                          name="searchKeyword"
+                          value={searchKeyword.name}
+                          onChange={handleSearchKeywordNameChange}
+                          inputProps={{ 'aria-label': 'search' }}
+                      />
+                    </div>
+                    <ThemeProvider theme={theme_preventerror}>
+                      <DetailSearch onChangeSearchKeyword={onChangeSearchKeyword}></DetailSearch>
+                    </ThemeProvider>
+                </Toolbar>
+            </AppBar>
+            <Drawer
+                className={classes.drawer}
+                variant="persistent"
+                anchor="left"
+                open={open}
+                classes={{
+                    paper: classes.drawerPaper,
+                }}
+            >
+                <div className={classes.drawerHeader}>
+                    <IconButton onClick={handleDrawerClose}>
+                        {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
+                    </IconButton>
+                </div>
+                <Divider />
+                    <List>
+                        <ListItemText primary="보기" className={classes.drawerMenu}/>
+                        <List>
+                            {['전체보기', '데이터 확인', '휴지통'].map((text, index) => (
+                            <ListItem button key={text}>
+                                <ListItemText primary={text} className={classes.drawerSubMenu} onClick={(event) => onChangeType(event, index)}/>
+                            </ListItem>
+                            ))}
+                        </List>
+                    </List>
+                <Divider />
+            </Drawer>
 
-        //     <main
-        //         className={clsx(classes.content, {
-        //         [classes.contentShift]: open,
-        //     })}>
-        //         <div className={classes.drawerHeader} />
-        //         <ModelDatas
-        //             datas={filteredComponents(datas)}
-        //             searchKeyword={searchKeyword}
-        //             onChangeData={onChangeData}
-        //             onChangeSortType={onChangeSort}>
-        //         </ModelDatas>
-        //     </main>
-        // </div>
+            <main
+                className={clsx(classes.content, {
+                [classes.contentShift]: open,
+            })}>
+                <div className={classes.drawerHeader} />
+                <ModelDatas
+                    datas={filteredComponents(datas)}
+                    searchKeyword={searchKeyword}
+                    onChangeData={onChangeData}
+                    onChangeSortType={onChangeSort}>
+                </ModelDatas>
+            </main>
+        </div>
     );
 }
 
