@@ -27,7 +27,8 @@ import DetailSearch from "./components/DetailSearch";
 import { ThemeProvider } from "@material-ui/core/styles";
 import { unstable_createMuiStrictModeTheme } from "@material-ui/core/styles";
 
-import arrayData from "./mainData.json";
+import Button from "@material-ui/core/Button";
+import arrayDatas from "./mainData.json"
 
 const drawerWidth = 240;
 
@@ -143,6 +144,10 @@ const useStyles = makeStyles((theme) => ({
       drawerSubMenu: {
         marginLeft: 50
       },
+
+      marginleft: {
+        marginLeft: 10
+      }
 }));
 
 const App = () => {
@@ -157,12 +162,11 @@ const App = () => {
       date_create: "",
       date_modify: ""
     });
+    const [datas, setDatas] = useState(arrayDatas);
 
-    const [datas, setDatas] = useState(arrayData);
     const [menu_type, setMenuType] = useState("data");
     const [open, setOpen] = useState(false);
     const [searchType, setSearchType] = useState("name");
-    
 
     const handleDrawerOpen = () => {
         setOpen(true);
@@ -263,6 +267,19 @@ const App = () => {
       setDatas(newDatas);
     }
 
+    const handleSaveFile = () => {
+      let newDatas = Array.from(datas);
+      newDatas = _.orderBy(newDatas, ["id"], ["asc"]);
+      const fileData = JSON.stringify(newDatas);
+      const blob = new Blob([fileData], {type: "text/plain"});
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.download = 'mainData.json';
+      link.href = url;
+      link.click();
+
+    }
+
     return(
         <div className={classes.root}>
             <AppBar
@@ -304,6 +321,7 @@ const App = () => {
                     <ThemeProvider theme={theme_preventerror}>
                       <DetailSearch onChangeSearchKeyword={onChangeSearchKeyword}></DetailSearch>
                     </ThemeProvider>
+                    <Button className={classes.marginleft} variant="contained" onClick={handleSaveFile}>저장</Button>
                 </Toolbar>
             </AppBar>
             <Drawer

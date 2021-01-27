@@ -1,0 +1,13 @@
+출처: https://stackoverflow.com/questions/53449406/write-to-a-text-or-json-file-in-react-with-node/53449590
+
+const fileData = JSON.stringify(newDatas);
+const blob = new Blob([fileData], {type: "text/plain"});
+const url = URL.createObjectURL(blob);
+const link = document.createElement('a');
+link.download = 'mainData.json';
+link.href = url;
+link.click();
+
+newDatas: 저장할 데이터
+
+link.download: 저장할 파일 이름

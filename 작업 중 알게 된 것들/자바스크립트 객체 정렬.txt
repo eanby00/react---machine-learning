@@ -1,0 +1,12 @@
+
+import _ from "lodash";
+
+let newDatas = Array.from(datas);
+newDatas = _.orderBy(newDatas, ["id"], ["asc"]);
+
+"id"는 정렬 기준
+"asc"는 오름차순, "desc"는 내림차순
+
+newDatas = _.orderBy(newDatas, [dataType], ["asc"])
+
+내부를 변수로 지정할 수도 있음
