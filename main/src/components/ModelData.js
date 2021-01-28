@@ -26,8 +26,8 @@ const ModelData = (props) => {
     const openData = () => {
         if (data.language === "파이썬"){
             if(data.model_json !== "") {
-                tf.loadLayersModel("./model_data/model.json").then(function(model){
-                    model.predict().print();
+                tf.loadLayersModel("https://raw.githubusercontent.com/eanby00/react-machine-learning/master/main/src/components/model_data/model.json").then(function(model){
+                    model.predict(tf.tensor([0.00632,18.0,2.31,0,0.538,6.575,65.2,4.09,1,296,15.3,396.9,4.98], [1,13])).print();
                 })
             }
         } else {
