@@ -7,6 +7,8 @@ import DeleteData from "./DeleteData";
 import { ThemeProvider } from "@material-ui/core/styles";
 import { unstable_createMuiStrictModeTheme } from "@material-ui/core/styles";
 
+import * as tf from "@tensorflow/tfjs";
+
 const theme = unstable_createMuiStrictModeTheme();
 
 const ModelData = (props) => {
@@ -19,6 +21,18 @@ const ModelData = (props) => {
     const restoreData = (e) => {
         e.preventDefault();
         props.onChangeData(data.id)
+    }
+
+    const openData = () => {
+        if (data.language === "파이썬"){
+            if(data.model_json !== "") {
+                tf.loadLayersModel("./model_data/model.json").then(function(model){
+                    model.predict().print();
+                })
+            }
+        } else {
+
+        }
     }
 
     var button = null;
@@ -40,7 +54,7 @@ const ModelData = (props) => {
             <TableCell>{data.language}</TableCell>
             <TableCell>{data.date_create}</TableCell>
             <TableCell>{data.date_modify}</TableCell>
-            <TableCell><Button variant="contained" color="primary">확인</Button></TableCell>
+            <TableCell><Button variant="contained" color="primary" onClick={openData}>확인</Button></TableCell>
             <TableCell>
                 {button}
             </TableCell>
