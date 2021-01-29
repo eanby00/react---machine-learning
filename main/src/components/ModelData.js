@@ -52,12 +52,27 @@ const ModelData = (props) => {
     }
 
     const openData = () => {
-        console.log(rows[0]["medv"])
-        console.log(rows[0]['crim', 'zn', 'indus', 'chas', 'nox', 'rm', 'age', 'dis', 'rad', 'tax', 'ptratio', 'b', 'lstat'])
+        let test = [];
+        for (let i = 0; i < 5; ++i){
+            let push_data = [];
+            for (let j in data.independent){
+                push_data.push(parseFloat(rows[i][data.independent[j]]));
+            }
+            test.push(push_data);
+        }
+
         if (data.language === "파이썬"){
             if(data.model_json !== "") {
                 tf.loadLayersModel(data.model_json).then(function(model){
-                    model.predict(tf.tensor([0.00632,18.0,2.31,0,0.538,6.575,65.2,4.09,1,296,15.3,396.9,4.98], [1,13])).print();
+                    let predict =  model.predict(tf.tensor(test))
+
+                    let show = predict.arraySync()
+                    for (let i in show) {
+                        show[i].push(rows[i][data.dependent]);
+                    }
+                    show.unshift(["예측한 값", "실제 값"])
+                    show = tf.tensor(show);
+                    show.print();
                 })
             }
         } else {
