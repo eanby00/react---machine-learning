@@ -8,11 +8,39 @@ import { ThemeProvider } from "@material-ui/core/styles";
 import { unstable_createMuiStrictModeTheme } from "@material-ui/core/styles";
 
 import * as tf from "@tensorflow/tfjs";
+import Papa from "papaparse";
 
 const theme = unstable_createMuiStrictModeTheme();
 
 const ModelData = (props) => {
     const [data] = useState(props.data);
+    const [rows, setRows] = useState([]);
+    const [code, setCode] = useState([]);
+
+    React.useEffect(() => {
+        async function getData() {
+            const response = await fetch(data.data);
+            const reader = response.body.getReader();
+            const result = await reader.read();
+            const decoder = new TextDecoder("utf-8");
+            const csv = decoder.decode(result.value);
+            const results = Papa.parse(csv, {header:true});
+            const rows = results.data;
+            setRows(rows);
+        }
+
+        async function getCode() {
+            const response = await fetch(data.code);
+            const reader = response.body.getReader();
+            const result = await reader.read();
+            const decoder = new TextDecoder("utf-8");
+            const code = decoder.decode(result.value);
+            setCode(code);
+        }
+
+        getData();
+        getCode();
+    }, [data])
 
     const deleteData = (id) => {
         props.onChangeData(id)
@@ -24,9 +52,11 @@ const ModelData = (props) => {
     }
 
     const openData = () => {
+        console.log(rows[0]["medv"])
+        console.log(rows[0]['crim', 'zn', 'indus', 'chas', 'nox', 'rm', 'age', 'dis', 'rad', 'tax', 'ptratio', 'b', 'lstat'])
         if (data.language === "파이썬"){
             if(data.model_json !== "") {
-                tf.loadLayersModel("https://raw.githubusercontent.com/eanby00/react-machine-learning/master/main/src/components/model_data/model.json").then(function(model){
+                tf.loadLayersModel(data.model_json).then(function(model){
                     model.predict(tf.tensor([0.00632,18.0,2.31,0,0.538,6.575,65.2,4.09,1,296,15.3,396.9,4.98], [1,13])).print();
                 })
             }
