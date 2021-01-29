@@ -35,13 +35,13 @@ test_boston = boston.drop(training_boston.index)
 # -------------------------------------------------------------------------------
 
 # ## 저장된 모델 불러오기
-json_file = open("./main/src/data_python/model/boston.json", "r")
+json_file = open("./main/src/data_python/boston_model/boston.json", "r")
 loaded_model_json = json_file.read()
 json_file.close()
 
 model = model_from_json(loaded_model_json)
 
-model.load_weights("./main/src/data_python/model/boston.h5")
+model.load_weights("./main/src/data_python/boston_model/boston.h5")
 
 # -------------------------------------------------------------------------------
 
@@ -88,12 +88,12 @@ model.load_weights("./main/src/data_python/model/boston.h5")
 
 # 모델 저장
 # model_json = model.to_json()
-# with open("boston.json", "w") as json_file: json_file.write(model_json)
+# with open("main/src/data_python/boston_model/boston.json", "w") as json_file: json_file.write(model_json)
 
-# model.save_weights("boston.h5")
+# model.save_weights("main/src/data_python/boston_model/boston.h5")
 
 # TF.js Layer 형식으로 내보내기
-tfjs.converters.save_keras_model(model, "./main/src/components/model_data")
+# tfjs.converters.save_keras_model(model, "./main/src/data_python/boston_model")
 
 # -------------------------------------------------------------------------------
 
