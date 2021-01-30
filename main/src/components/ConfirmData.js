@@ -35,7 +35,8 @@ const ConfirmData = (props) => {
     const classes = useStyles();
     const [data] = useState(props.data);
     const [open, setOpen] = useState(false);
-    var tests = [];
+    var tests = Array.from({length: data.independent.length}, () => 0);
+    const [result, setResult] = useState(0);
     
     const handleClickOpen = () => {
         setOpen(true);
@@ -47,7 +48,6 @@ const ConfirmData = (props) => {
 
     const handleChange = (e, id) => {
         tests[id] = parseFloat(e.target.value);
-        console.log(tests)
     }
     
 
@@ -56,23 +56,16 @@ const ConfirmData = (props) => {
         if (data.language === "파이썬"){
             if(data.model_json !== "") {
                 tf.loadLayersModel(data.model_json).then(function(model){
-                    console.log(tests)
                     let predict =  model.predict(tf.tensor(tests, [1,data.independent.length]))
 
-                    predict.print()
+                    setResult(predict.arraySync()[0][0]);
                     
                 })
             }
         } else {
 
         }
-
     }
-    // code
-    // data
-    // model_json
-        // independent
-        // dependent
 
     let deleted = null;
     if(data.isDeleted === true) {
@@ -81,7 +74,7 @@ const ConfirmData = (props) => {
 
     var texts = []; 
     for (let i in data.independent){
-        texts.push(<TextField key={i} className={classes.input} id={data.independent[i]} label={data.independent[i]} variant="outlined" onChange={(event) => handleChange(event, i)}/>)
+        texts.push(<TextField key={i} className={classes.input} id={data.independent[i]} label={data.independent[i]} variant="outlined" onClick={(event) => {event.target.value = null}} onChange={(event) => handleChange(event, i)}/>)
     }
     
 
@@ -91,10 +84,15 @@ const ConfirmData = (props) => {
             <Dialog open={open} onClose={handleClose}>
                 <DialogTitle onClose={handleClose}>{data.name} by {data.language}</DialogTitle>
                 <DialogContent>
-                    {deleted}
-                    <Typography variant="subtitle2">{data.type} 분석의 loss 형식은 {data.loss_type} 입니다.</Typography>
-                    <Typography variant="subtitle2">loss: {data.loss} || accuracy: {data.accuracy}</Typography>
-                    <Typography variant="subtitle2">생성 날짜: {data.date_create} || 수정 날짜: {data.date_modify}</Typography>
+                    <div className={classes.child}>
+                        {deleted}
+                        <Typography variant="subtitle2">{data.type} 분석의 loss 형식은 {data.loss_type} 입니다.</Typography>
+                        <Typography variant="subtitle2">loss: {data.loss} || accuracy: {data.accuracy}</Typography>
+                        <Typography variant="subtitle2">생성 날짜: {data.date_create} || 수정 날짜: {data.date_modify}</Typography>
+                    </div>
+                    <div className={classes.child}>
+                        <Typography variant="h5">테스트 분석 결과는 {result} 입니다.</Typography>
+                    </div>
                     <hr/>
                         {texts}
                     <hr/>
