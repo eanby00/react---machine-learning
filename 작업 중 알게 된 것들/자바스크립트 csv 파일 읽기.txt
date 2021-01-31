@@ -1,0 +1,2 @@
+# 지식 출처1: https://code.tutsplus.com/ko/tutorials/parsing-a-csv-file-with-javascript--cms-25626
+# 지식 출처2: https://sweetpotatocat.tistory.com/5
