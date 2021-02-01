@@ -2,20 +2,23 @@
 <html>
 
     <head>
-        <title>TensorFlow.js Tutorial - lemon</title>
+        <title>TensorFlow.js Tutorial - boston</title>
         <!-- 데이터 기본 정보 -->
-        <!-- # 이름: 보스턴 집 값 예측
-        # 회귀/분류: 회귀
-        # loss 종류: mse
-        # loss: 2.3330230712890625
-        # 정확도: X
-        # 언어 종류: 자바스크립트
-        # 생성 날짜: 20210201
-        # 수정 날짜: 20210201
-        # {"id":15,"name":"보스턴 집 값 예측","type":"회귀","loss_type":"mse","loss":2.3330230712890625,"accuracy":"X"
-        # ,"language":"자바스크립트","date_create":"20210201","date_modify":"20210201","isDeleted":false,
-        # "deleted_date":0,"code":"https://raw.githubusercontent.com/eanby00/react-machine-learning/master/main/src/data_python/%EB%B3%B4%EC%8A%A4%ED%84%B4%EC%A7%91%EA%B0%92%EC%98%88%EC%B8%A1.py",
-        # "dataSource":"https://opentutorials.org/course/4570/28976","desc":"웹페이지 테스트및 개발 용도 + 처음 분석한 파일"} -->
+        <!-- 이름: 보스턴 집 값 예측
+        회귀/분류: 회귀
+        loss 종류: mse
+        loss: 2.3330230712890625
+        정확도: X
+        언어 종류: 자바스크립트
+        생성 날짜: 20210201
+        수정 날짜: 20210201
+        {"id":17,"name":"보스턴 집 값 예측","type":"회귀","loss_type":"mse","loss":2.3330230712890625,"accuracy":"X"
+        ,"language":"자바스크립트","date_create":"20210201","date_modify":"20210201","isDeleted":false,
+        "deleted_date":0,"code":"https://github.com/eanby00/react-machine-learning/blob/master/main/src/data_javascript/boston_model/boston.html",
+        "dataSource":"https://opentutorials.org/course/4570/28976","desc":"보스턴 집 값 예측",
+        "data":"https://raw.githubusercontent.com/eanby00/react-machine-learning/master/main/src/data/boston.csv",
+        "model_json":"https://github.com/eanby00/react-machine-learning/blob/master/main/src/data_javascript/boston_model/boston.json",
+        "independent":["crim", "zn", "indus", "chas", "nox", "rm", "age", "dis", "rad", "tax", "ptratio", "b", "lstat"], "dependent":["medv"]} -->
         <!-- Import TensorFlow.js -->
         <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@2.0.0/dist/tf.min.js"></script>
         <script src="https://raw.githubusercontent.com/eanby00/react-machine-learning/master/main/src/data/boston.csv"></script>
@@ -57,34 +60,36 @@
                 dependent.print()
 
         
-                // 모델 제작 
-                var X = tf.input({ shape: [13] });
-                var H1 = tf.layers.dense({ units: 13, activation: "relu" }).apply(X);
-                var H2 = tf.layers.dense({ units: 13, activation: "relu" }).apply(H1);
-                var H3 = tf.layers.dense({ units: 13, activation: "relu" }).apply(H2);
-                var H4 = tf.layers.dense({ units: 13, activation: "relu" }).apply(H3);
-                var Y = tf.layers.dense({ units: 1 }).apply(H4);
-                var model = tf.model({ inputs: X, outputs: Y });
-                var compileParam = { optimizer: tf.train.adam(), loss: tf.losses.meanSquaredError }
-                model.compile(compileParam);
+                // // 모델 제작 
+                // var X = tf.input({ shape: [13] });
+                // var H1 = tf.layers.dense({ units: 13, activation: "relu" }).apply(X);
+                // var H2 = tf.layers.dense({ units: 13, activation: "relu" }).apply(H1);
+                // var H3 = tf.layers.dense({ units: 13, activation: "relu" }).apply(H2);
+                // var H4 = tf.layers.dense({ units: 13, activation: "relu" }).apply(H3);
+                // var Y = tf.layers.dense({ units: 1 }).apply(H4);
+                // var model = tf.model({ inputs: X, outputs: Y });
+                // var compileParam = { optimizer: tf.train.adam(), loss: tf.losses.meanSquaredError }
+                // model.compile(compileParam);
         
-                // 모델 학습
-                var fitParam = { epochs: 10000, callbacks:{onEpochEnd:function(epoch, logs){console.log('epoch', epoch, logs, "RMSE=>", Math.sqrt(logs.loss));}} }
-                model.fit(independent, dependent, fitParam).then(function (result) {
+                // // 모델 학습
+                // var fitParam = { epochs: 10000, callbacks:{onEpochEnd:function(epoch, logs){console.log('epoch', epoch, logs, "RMSE=>", Math.sqrt(logs.loss));}} }
+                // model.fit(independent, dependent, fitParam).then(function (result) {
                 
-                    var 예측한결과 = model.predict(independent);
-                    예측한결과.print();
+                //     var 예측한결과 = model.predict(independent);
+                //     예측한결과.print();
 
-                    // var 예측 = [0.00632, 18, 2.31, 0, 0.538, 6.575, 65.2, 4.09, 1, 296, 15.3, 396.9, 4.98]
-                    // var 예측 = tf.tensor(예측, [1, 13]);
-                    // var 결과 = model.predict(결과);
-                    // 결과.print();
+                //     // var 예측 = [0.00632, 18, 2.31, 0, 0.538, 6.575, 65.2, 4.09, 1, 296, 15.3, 396.9, 4.98]
+                //     // var 예측 = tf.tensor(예측, [1, 13]);
+                //     // var 결과 = model.predict(결과);
+                //     // 결과.print();
 
-                    model.save("downloads://boston");
+                //     model.save("downloads://boston");
     
-                });  
+                // });  
 
-            
+                tf.loadLayersModel("https://github.com/eanby00/react-machine-learning/blob/master/main/src/data_javascript/boston_model/boston.json", "include").then(function(model){
+                    model.predict(independent).print();
+                });
 
             }
      

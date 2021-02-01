@@ -7,8 +7,6 @@ import DeleteData from "./DeleteData";
 import { ThemeProvider } from "@material-ui/core/styles";
 import { unstable_createMuiStrictModeTheme } from "@material-ui/core/styles";
 
-import * as tf from "@tensorflow/tfjs";
-import Papa from "papaparse";
 import ConfirmData from "./ConfirmData";
 
 const theme = unstable_createMuiStrictModeTheme();

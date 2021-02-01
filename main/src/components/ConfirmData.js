@@ -53,17 +53,13 @@ const ConfirmData = (props) => {
 
     const openData = () => {
 
-        if (data.language === "파이썬"){
-            if(data.model_json !== "") {
-                tf.loadLayersModel(data.model_json).then(function(model){
-                    let predict =  model.predict(tf.tensor(tests, [1,data.independent.length]))
+        if(data.model_json !== "") {
+            tf.loadLayersModel(data.model_json).then(function(model){
+                let predict =  model.predict(tf.tensor(tests, [1,data.independent.length]))
 
-                    setResult(predict.arraySync()[0][0]);
-                    
-                })
-            }
-        } else {
-
+                setResult(predict.arraySync()[0][0]);
+                
+            })
         }
     }
 
