@@ -10,6 +10,7 @@ import InputBase from '@material-ui/core/InputBase';
 import { fade} from '@material-ui/core/styles';
 import SearchIcon from '@material-ui/icons/Search';
 
+import Box from "@material-ui/core/Box";
 import clsx from 'clsx';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
@@ -29,6 +30,8 @@ import { unstable_createMuiStrictModeTheme } from "@material-ui/core/styles";
 
 import Button from "@material-ui/core/Button";
 import arrayDatas from "./mainData.json"
+
+import Container from "@material-ui/core/Container";
 
 const drawerWidth = 240;
 
@@ -283,27 +286,34 @@ const App = () => {
 
     return(
         <div className={classes.root}>
+          <Box component="div"className={clsx(classes.appBar, {
+                [classes.appBarShift]: open,
+            })}>
             <AppBar
             position="static"
-            className={clsx(classes.appBar, {
-                [classes.appBarShift]: open,
-            })}
+            
             >
                 <Toolbar>
+
+                  <Box component="div" className={clsx(classes.menuButton, open && classes.hide)}>
                     <IconButton
                         color="inherit"
                         aria-label="open drawer"
                         onClick={handleDrawerOpen}
                         edge="start"
-                        className={clsx(classes.menuButton, open && classes.hide)}
                     >
                         <MenuIcon />
                     </IconButton>
-                    <Typography className={classes.title} variant="h6" noWrap>
+                  </Box>
+
+                  <Box component="div" className={classes.title} >
+                    <Typography variant="h6" noWrap>
                         머신 러닝 데이터 분석 관리
                     </Typography>
+                  </Box>
 
-                    <div className={classes.search}>
+                  <Box component="div" className={classes.search}>
+                    <div>
                       <div className={classes.searchIcon}>
                         <SearchIcon/>
                       </div>
@@ -319,12 +329,21 @@ const App = () => {
                           inputProps={{ 'aria-label': 'search' }}
                       />
                     </div>
+                  </Box>
+
+                  <Box component="div">
                     <ThemeProvider theme={theme_preventerror}>
                       <DetailSearch onChangeSearchKeyword={onChangeSearchKeyword}></DetailSearch>
                     </ThemeProvider>
-                    <Button className={classes.marginleft} variant="contained" onClick={handleSaveFile}>저장</Button>
+                  </Box>
+
+                  <Box component="div" className={classes.marginleft}>
+                    <Button variant="contained" onClick={handleSaveFile}>저장</Button>
+                  </Box>
                 </Toolbar>
             </AppBar>
+          </Box>
+
             <Drawer
                 className={classes.drawer}
                 variant="persistent"
@@ -353,7 +372,8 @@ const App = () => {
                 <Divider />
             </Drawer>
 
-            <main
+            <Box
+              conponent="div"
                 className={clsx(classes.content, {
                 [classes.contentShift]: open,
             })}>
@@ -364,7 +384,7 @@ const App = () => {
                     onChangeData={onChangeData}
                     onChangeSortType={onChangeSort}>
                 </ModelDatas>
-            </main>
+            </Box >
         </div>
     );
 }

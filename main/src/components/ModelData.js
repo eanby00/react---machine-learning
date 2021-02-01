@@ -11,7 +11,10 @@ import ConfirmData from "./ConfirmData";
 
 const theme = unstable_createMuiStrictModeTheme();
 
+
 const ModelData = (props) => {
+
+    const classes = useStyles();
     const [data] = useState(props.data);
 
     const deleteData = (id) => {

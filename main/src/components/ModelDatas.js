@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import { makeStyles } from '@material-ui/core/styles';
 import ModelData from "./ModelData";
+import Box from "@material-ui/core/Box";
 import Paper from "@material-ui/core/Paper";
 import Table from "@material-ui/core/Table";
 import TableHead from "@material-ui/core/TableHead";
@@ -11,9 +12,9 @@ import Button from "@material-ui/core/Button";
 
 const useStyles = makeStyles((theme) => ({
     root: {
+      width: "100%",
       margin: theme.spacing(3),
-    },
-    paper: {
+      overflowX: "auto",
       marginLeft: 18,
       marginRight: 18
     },
@@ -21,7 +22,8 @@ const useStyles = makeStyles((theme) => ({
       minwidth: 1080
     },
     tableHead: {
-      fontSize: "1.0rem"
+      fontSize: "1.0rem",
+      overflowX: "auto"
     }
 }));
 
@@ -52,29 +54,27 @@ const ModelDatas = (props) => {
     }
     
     return(
-        <div className={classes.root}>
-            <Paper className={classes.paper}>
-              <Table className={classes.table}>
-                <TableHead className={classes.TableHead}>
-                  <TableRow>
-                    <TableCell><Button onClick={(event) => changeSortType(event, "name")}>이름</Button></TableCell>
-                    <TableCell><Button onClick={(event) => changeSortType(event, "type")}>회귀/분류</Button></TableCell>
-                    <TableCell><Button onClick={(event) => changeSortType(event, "loss_type")}>loss 종류</Button></TableCell>
-                    <TableCell><Button onClick={(event) => changeSortType(event, "loss")}>loss</Button></TableCell>
-                    <TableCell><Button onClick={(event) => changeSortType(event, "accuracy")}>정확도</Button></TableCell>
-                    <TableCell><Button onClick={(event) => changeSortType(event, "language")}>언어 종류</Button></TableCell>
-                    <TableCell><Button onClick={(event) => changeSortType(event, "date_create")}>생성 날짜</Button></TableCell>
-                    <TableCell><Button onClick={(event) => changeSortType(event, "date_modify")}>수정 날짜</Button></TableCell>
-                    <TableCell>확인</TableCell>
-                    <TableCell>삭제</TableCell>
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  {lists}
-                </TableBody>
-              </Table>
-            </Paper>
-          </div>
+      <Box conponent="div" className={classes.root}>
+            <Table className={classes.table}>
+              <TableHead className={classes.TableHead}>
+                <TableRow>
+                  <TableCell><Button onClick={(event) => changeSortType(event, "name")}>이름</Button></TableCell>
+                  <TableCell><Button onClick={(event) => changeSortType(event, "type")}>회귀/분류</Button></TableCell>
+                  <TableCell><Button onClick={(event) => changeSortType(event, "loss_type")}>loss 종류</Button></TableCell>
+                  <TableCell><Button onClick={(event) => changeSortType(event, "loss")}>loss</Button></TableCell>
+                  <TableCell><Button onClick={(event) => changeSortType(event, "accuracy")}>정확도</Button></TableCell>
+                  <TableCell><Button onClick={(event) => changeSortType(event, "language")}>언어 종류</Button></TableCell>
+                  <TableCell><Button onClick={(event) => changeSortType(event, "date_create")}>생성 날짜</Button></TableCell>
+                  <TableCell><Button onClick={(event) => changeSortType(event, "date_modify")}>수정 날짜</Button></TableCell>
+                  <TableCell>확인</TableCell>
+                  <TableCell>삭제</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {lists}
+              </TableBody>
+            </Table>
+      </Box>
     );
 }
 

@@ -66,13 +66,12 @@ const DetailSearch = (props) => {
 
     const onSendSearchKeyword = (event) => {
         setOpen(false);
-        // console.log({name: name, modelType, loss_type, lang, date_create, date_modify});
         props.onChangeSearchKeyword({name: name, type: modelType, loss_type: loss_type, language: lang, date_create: date_create, date_modify: date_modify});
     }
 
     return(
         <div className={classes.root}>
-            <Button variant="contained" onClick={handleClickOpen}>상세 검색</Button>
+            <Button variant="contained" onClick={handleClickOpen} className={classes.word}>상세검색</Button>
             <Dialog open={open} onClose={handleClose}>
                 <DialogTitle onClose={handleClose}>상세 검색</DialogTitle>
                 <DialogContent>
