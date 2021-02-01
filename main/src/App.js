@@ -270,7 +270,8 @@ const App = () => {
     const handleSaveFile = () => {
       let newDatas = Array.from(datas);
       newDatas = _.orderBy(newDatas, ["id"], ["asc"]);
-      const fileData = JSON.stringify(newDatas);
+      let fileData = JSON.stringify(newDatas);
+      fileData = fileData.replace(/},/gi, "},\n");
       const blob = new Blob([fileData], {type: "text/plain"});
       const url = URL.createObjectURL(blob);
       const link = document.createElement('a');

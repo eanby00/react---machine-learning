@@ -17,7 +17,7 @@
         "deleted_date":0,"code":"https://github.com/eanby00/react-machine-learning/blob/master/main/src/data_javascript/boston_model/boston.html",
         "dataSource":"https://opentutorials.org/course/4570/28976","desc":"보스턴 집 값 예측",
         "data":"https://raw.githubusercontent.com/eanby00/react-machine-learning/master/main/src/data/boston.csv",
-        "model_json":"https://github.com/eanby00/react-machine-learning/blob/master/main/src/data_javascript/boston_model/boston.json",
+        "model_json":"https://raw.githubusercontent.com/eanby00/react-machine-learning/master/main/src/data_javascript/boston_model/boston.json",
         "independent":["crim", "zn", "indus", "chas", "nox", "rm", "age", "dis", "rad", "tax", "ptratio", "b", "lstat"], "dependent":["medv"]} -->
         <!-- Import TensorFlow.js -->
         <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@2.0.0/dist/tf.min.js"></script>
@@ -86,8 +86,8 @@
                 //     model.save("downloads://boston");
     
                 // });  
-
-                tf.loadLayersModel("https://github.com/eanby00/react-machine-learning/blob/master/main/src/data_javascript/boston_model/boston.json", "include").then(function(model){
+                    
+                tf.loadLayersModel("https://raw.githubusercontent.com/eanby00/react-machine-learning/master/main/src/data_javascript/boston_model/boston.json", { "Access-Control-Allow-Origin": '*'}).then(function(model){
                     model.predict(independent).print();
                 });
 
