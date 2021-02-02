@@ -1,7 +1,6 @@
 import React, {useState} from "react";
 import { makeStyles } from '@material-ui/core/styles';
 import ModelData from "./ModelData";
-import Box from "@material-ui/core/Box";
 import Paper from "@material-ui/core/Paper";
 import Table from "@material-ui/core/Table";
 import TableHead from "@material-ui/core/TableHead";
@@ -14,16 +13,12 @@ const useStyles = makeStyles((theme) => ({
     root: {
       width: "100%",
       margin: theme.spacing(3),
-      overflowX: "auto",
       marginLeft: 18,
-      marginRight: 18
-    },
-    table: {
-      minwidth: 1080
+      marginRight: 18,
+      overflow: "auto"
     },
     tableHead: {
       fontSize: "1.0rem",
-      overflowX: "auto"
     }
 }));
 
@@ -54,7 +49,7 @@ const ModelDatas = (props) => {
     }
     
     return(
-      <Box conponent="div" className={classes.root}>
+      <Paper className={classes.root}>
             <Table className={classes.table}>
               <TableHead className={classes.TableHead}>
                 <TableRow>
@@ -74,7 +69,7 @@ const ModelDatas = (props) => {
                 {lists}
               </TableBody>
             </Table>
-      </Box>
+      </Paper>
     );
 }
 

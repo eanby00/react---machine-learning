@@ -1,0 +1,16 @@
+xs, 초소형 : 0px
+스마트폰 화면 
+sm, 소형 : 600px
+태블릿
+md, 중간 : 960px
+데스크탑
+lg, 대형 : 1280px
+xl, 초대형 : 1920px
+
+
+<Box display={{ xs: 'block', md: 'none' }}>
+  hide on screens wider than md
+</Box>
+<Box display={{ xs: 'none', md: 'block' }}>
+  hide on screens smaller than md
+</Box>
