@@ -1,14 +1,17 @@
 import React, { useState } from "react";
+
+// 컴포넌트 import
+import DeleteData from "./DeleteData";
+import ConfirmData from "./ConfirmData";
+
+// material-ui/core에서 import
 import TableRow from "@material-ui/core/TableRow";
 import TableCell from "@material-ui/core/TableCell";
 import Button from "@material-ui/core/Button";
-import DeleteData from "./DeleteData";
-
 import { ThemeProvider } from "@material-ui/core/styles";
 import { unstable_createMuiStrictModeTheme } from "@material-ui/core/styles";
 import { makeStyles } from "@material-ui/core/styles";
 
-import ConfirmData from "./ConfirmData";
 
 const theme = unstable_createMuiStrictModeTheme();
 

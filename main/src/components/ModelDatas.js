@@ -1,6 +1,10 @@
 import React, {useState} from "react";
-import { makeStyles } from '@material-ui/core/styles';
+
+// 컴포넌트 import
 import ModelData from "./ModelData";
+
+// material-ui/core에서 import
+import { makeStyles } from '@material-ui/core/styles';
 import Paper from "@material-ui/core/Paper";
 import Table from "@material-ui/core/Table";
 import TableHead from "@material-ui/core/TableHead";

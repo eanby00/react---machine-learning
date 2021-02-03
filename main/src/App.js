@@ -1,37 +1,42 @@
 import React, { useState } from "react";
-import './App.css';
-import ModelDatas from "./components/ModelDatas";
-import { makeStyles, useTheme } from '@material-ui/core/styles';
 
+// 기타 기능을 위한 import
+import PropTypes from 'prop-types';
+import clsx from 'clsx';
+import _ from "lodash";
+
+// 컴포넌트와 데이터 import
+import arrayDatas from "./mainData.json"
+import ModelDatas from "./components/ModelDatas";
+import DetailSearch from "./components/DetailSearch";
+
+// material-ui/core에서 import
+import { makeStyles, useTheme, fade } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import InputBase from '@material-ui/core/InputBase';
-import { fade} from '@material-ui/core/styles';
-import SearchIcon from '@material-ui/icons/Search';
-
 import Box from "@material-ui/core/Box";
-import clsx from 'clsx';
 import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
 import Drawer from '@material-ui/core/Drawer';
 import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
-
-import _ from "lodash";
-import DetailSearch from "./components/DetailSearch";
-
+import useScrollTrigger from '@material-ui/core/useScrollTrigger';
 import { ThemeProvider } from "@material-ui/core/styles";
 import { unstable_createMuiStrictModeTheme } from "@material-ui/core/styles";
-
 import Button from "@material-ui/core/Button";
-import arrayDatas from "./mainData.json"
+import Fab from '@material-ui/core/Fab';
+import Zoom from '@material-ui/core/Zoom';
 
-import Container from "@material-ui/core/Container";
+// material-ui/icons에서 import
+import SearchIcon from '@material-ui/icons/Search';
+import MenuIcon from '@material-ui/icons/Menu';
+import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
+import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
+
 
 const drawerWidth = 240;
 
@@ -150,10 +155,46 @@ const useStyles = makeStyles((theme) => ({
 
       marginleft: {
         marginLeft: 10
-      }
+      },
+      upBotton: {
+        position: 'fixed',
+        bottom: theme.spacing(2),
+        right: theme.spacing(2),
+      },
 }));
 
-const App = () => {
+function ScrollTop(props) {
+  const { children, window } = props;
+  const classes = useStyles();
+  const trigger = useScrollTrigger({
+    target: window ? window() : undefined,
+    disableHysteresis: true,
+    threshold: 100,
+  });
+
+  const handleClick = (event) => {
+    const anchor = (event.target.ownerDocument || document).querySelector('#back-to-top-anchor');
+
+    if (anchor) {
+      anchor.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  };
+
+  return (
+    <Zoom in={trigger}>
+      <div onClick={handleClick} role="presentation" className={classes.upBotton}>
+        {children}
+      </div>
+    </Zoom>
+  );
+}
+
+ScrollTop.propTypes = {
+  children: PropTypes.element.isRequired,
+  window: PropTypes.func,
+};
+
+const App = (props) => {
     const classes = useStyles();
     const theme = useTheme();
     
@@ -293,7 +334,7 @@ const App = () => {
             position="static"
             
             >
-                <Toolbar>
+                <Toolbar id="back-to-top-anchor">
 
                   <Box component="div" className={clsx(classes.menuButton, open && classes.hide)}>
                     <IconButton
@@ -385,6 +426,12 @@ const App = () => {
                     onChangeSortType={onChangeSort}>
                 </ModelDatas>
             </Box >
+
+            <ScrollTop {...props}>
+              <Fab color="secondary" size="small" aria-label="scroll back to top">
+                <KeyboardArrowUpIcon />
+              </Fab>
+            </ScrollTop>
         </div>
     );
 }

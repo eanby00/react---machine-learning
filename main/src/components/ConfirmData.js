@@ -1,29 +1,30 @@
 import React, { useState } from "react";
+
+// 기타 기능을 위한 import
+import PaPa from "papaparse";
+import * as tf from "@tensorflow/tfjs";
+
+// material-ui/core에서 import
+import { makeStyles } from "@material-ui/core/styles";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import DialogContent from "@material-ui/core/DialogContent";
 import Button from "@material-ui/core/Button";
-
-import { makeStyles } from "@material-ui/core/styles";
 import Typography from '@material-ui/core/Typography';
 import TextField from "@material-ui/core/TextField";
-
-import PaPa from "papaparse";
-import * as tf from "@tensorflow/tfjs";
-
 import Table from "@material-ui/core/Table";
 import TableCell from "@material-ui/core/TableCell";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import TableBody from "@material-ui/core/TableBody";
-
 import Accordion from '@material-ui/core/Accordion';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-
 import Paper from "@material-ui/core/Paper";
+
+// material-ui/icons에서 import
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 const useStyles = makeStyles((theme) => ({
     heading: {
@@ -164,7 +165,6 @@ const ConfirmData = (props) => {
                         expandIcon={<ExpandMoreIcon />}
                         aria-controls="panel1a-content"
                         id="panel1a-header"
-                        className={classes.blue}
                         >
                             <Typography className={classes.accoHeading}>모델 정보 확인</Typography>
                         </AccordionSummary>
@@ -201,7 +201,6 @@ const ConfirmData = (props) => {
                         expandIcon={<ExpandMoreIcon />}
                         aria-controls="panel1a-content"
                         id="panel1a-header"
-                        className={classes.blue}
                         >
                             <Typography className={classes.accoHeading}>모델로 테스트하기</Typography>
                         </AccordionSummary>
