@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
     },
     input: {
         margin: theme.spacing(1),
-        width: '25ch',
+        width: "90%"
     },
     root: {
         width: '100%',
@@ -57,6 +57,13 @@ const useStyles = makeStyles((theme) => ({
         overflowX: "auto",
         
     },
+    text: {
+        width: "100%",
+        overflowX: "auto",
+        whiteSpace: "nowrap",
+        margin: theme.spacing(0.5),
+        textOverflow: "ellipsis"
+    }
 }))
 
 const ConfirmData = (props) => {
@@ -113,7 +120,7 @@ const ConfirmData = (props) => {
 
     let deleted = null;
     if(data.isDeleted === true) {
-        deleted = <Typography variant="subtitle1">삭제된 데이터입니다. 삭제 날짜: {data.deleted_date}</Typography>
+        deleted = <Paper className={classes.text}><Typography variant="body2">삭제된 데이터입니다. 삭제 날짜: {data.deleted_date}</Typography></Paper>
     }
 
     var texts = []; 
@@ -155,9 +162,12 @@ const ConfirmData = (props) => {
                         </AccordionSummary>
                         <AccordionDetails className={classes.detail}>
                             {deleted}
-                            <Typography variant="subtitle2">{data.type} 분석의 loss 형식은 {data.loss_type} 입니다.</Typography>
-                            <Typography variant="subtitle2">loss: {data.loss} || accuracy: {data.accuracy}</Typography>
-                            <Typography variant="subtitle2">생성 날짜: {data.date_create} || 수정 날짜: {data.date_modify}</Typography>
+                            <Paper className={classes.text}><Typography variant="body2">분석 타입: {data.type}</Typography></Paper>
+                            <Paper className={classes.text}><Typography variant="body2">loss 형식: {data.loss_type}</Typography></Paper>
+                            <Paper className={classes.text}><Typography variant="body2">loss: {data.loss}</Typography></Paper>
+                            <Paper className={classes.text}><Typography variant="body2">accuracy: {data.accuracy}</Typography></Paper>
+                            <Paper className={classes.text}><Typography variant="body2">생성 날짜: {data.date_create}</Typography></Paper>
+                            <Paper className={classes.text}><Typography variant="body2">수정 날짜: {data.date_modify}</Typography></Paper>
                         </AccordionDetails>
                     </Accordion>
                     
@@ -203,9 +213,9 @@ const ConfirmData = (props) => {
                             <Typography className={classes.accoHeading}>출처</Typography>
                         </AccordionSummary>
                         <AccordionDetails className={classes.detail}>
-                            <Typography variant="body2">데이터 출처: <a href={data.dataSource} target="_blank" rel="noreferrer">{data.dataSource}</a></Typography>
-                            <Typography variant="body2">데이터 링크: <a href={data.data} target="_blank" rel="noreferrer">{data.data}</a></Typography>
-                            <Typography variant="body2">코드 링크: <a href={data.code} target="_blank" rel="noreferrer">{data.code}</a></Typography>
+                            <Paper className={classes.text}><Typography variant="body2">데이터 출처: <a href={data.dataSource} target="_blank" rel="noreferrer">{data.dataSource}</a></Typography></Paper>
+                            <Paper className={classes.text}><Typography variant="body2">데이터 링크: <a href={data.data} target="_blank" rel="noreferrer">{data.data}</a></Typography></Paper>
+                            <Paper className={classes.text}><Typography variant="body2">코드 링크: <a href={data.code} target="_blank" rel="noreferrer">{data.code}</a></Typography></Paper>
 
                         </AccordionDetails>
                     </Accordion>

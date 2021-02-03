@@ -12,20 +12,33 @@ import Button from "@material-ui/core/Button";
 const useStyles = makeStyles((theme) => ({
     root: {
       width: "100%",
-      margin: theme.spacing(3),
-      marginLeft: 18,
-      marginRight: 18,
       overflow: "auto"
     },
     tableHead: {
       fontSize: "1.0rem",
-    }
+    },
+    tableCell_low: {
+      [theme.breakpoints.down('xs')]: {
+        display: "none"
+      },
+    },
+    tableCell_medium: {
+      [theme.breakpoints.down('sm')]: {
+        display: "none"
+      },
+    },
+    tableCell_high: {
+      [theme.breakpoints.down('md')]: {
+        display: "none"
+      },
+    },
 }));
 
 const ModelDatas = (props) => {
 
     const [dataType, setDataType] = useState("id");
     const [sortType, setSortType] = useState(true);
+    const classes = useStyles();
 
     const changeSortType = (event, type) => {
         event.preventDefault();
@@ -42,34 +55,33 @@ const ModelDatas = (props) => {
         props.onChangeData(e);
     }
 
-    const classes = useStyles();
     var lists = [];
     for (var i in props.datas){
       lists.push(<ModelData key={props.datas[i].id} data={props.datas[i]} onChangeData={ChangeData}></ModelData>)
     }
     
     return(
-      <Paper className={classes.root}>
-            <Table className={classes.table}>
-              <TableHead className={classes.TableHead}>
-                <TableRow>
-                  <TableCell><Button onClick={(event) => changeSortType(event, "name")}>이름</Button></TableCell>
-                  <TableCell><Button onClick={(event) => changeSortType(event, "type")}>회귀/분류</Button></TableCell>
-                  <TableCell><Button onClick={(event) => changeSortType(event, "loss_type")}>loss 종류</Button></TableCell>
-                  <TableCell><Button onClick={(event) => changeSortType(event, "loss")}>loss</Button></TableCell>
-                  <TableCell><Button onClick={(event) => changeSortType(event, "accuracy")}>정확도</Button></TableCell>
-                  <TableCell><Button onClick={(event) => changeSortType(event, "language")}>언어 종류</Button></TableCell>
-                  <TableCell><Button onClick={(event) => changeSortType(event, "date_create")}>생성 날짜</Button></TableCell>
-                  <TableCell><Button onClick={(event) => changeSortType(event, "date_modify")}>수정 날짜</Button></TableCell>
-                  <TableCell>확인</TableCell>
-                  <TableCell>삭제</TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {lists}
-              </TableBody>
-            </Table>
-      </Paper>
+        <Paper className={classes.root}>
+          <Table className={classes.table}>
+            <TableHead className={classes.TableHead}>
+              <TableRow>
+                <TableCell><Button onClick={(event) => changeSortType(event, "name")}>이름</Button></TableCell>
+                <TableCell className={classes.tableCell_low}><Button onClick={(event) => changeSortType(event, "type")}>회귀/분류</Button></TableCell>
+                <TableCell className={classes.tableCell_medium}><Button onClick={(event) => changeSortType(event, "loss_type")}>loss 종류</Button></TableCell>
+                <TableCell className={classes.tableCell_low}><Button onClick={(event) => changeSortType(event, "loss")}>loss</Button></TableCell>
+                <TableCell className={classes.tableCell_medium}><Button onClick={(event) => changeSortType(event, "accuracy")}>정확도</Button></TableCell>
+                <TableCell className={classes.tableCell_medium}><Button onClick={(event) => changeSortType(event, "language")}>언어 종류</Button></TableCell>
+                <TableCell className={classes.tableCell_high}><Button onClick={(event) => changeSortType(event, "date_create")}>생성 날짜</Button></TableCell>
+                <TableCell className={classes.tableCell_high}><Button onClick={(event) => changeSortType(event, "date_modify")}>수정 날짜</Button></TableCell>
+                <TableCell>확인</TableCell>
+                <TableCell>삭제</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {lists}
+            </TableBody>
+          </Table>
+        </Paper>
     );
 }
 
