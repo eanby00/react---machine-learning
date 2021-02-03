@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/react-machine-learning/static/css/main.ea1455b2.chunk.css",
-    "main.js": "/react-machine-learning/static/js/main.e34812b2.chunk.js",
-    "main.js.map": "/react-machine-learning/static/js/main.e34812b2.chunk.js.map",
-    "runtime-main.js": "/react-machine-learning/static/js/runtime-main.6b2bfe43.js",
-    "runtime-main.js.map": "/react-machine-learning/static/js/runtime-main.6b2bfe43.js.map",
-    "static/js/2.015782ff.chunk.js": "/react-machine-learning/static/js/2.015782ff.chunk.js",
-    "static/js/2.015782ff.chunk.js.map": "/react-machine-learning/static/js/2.015782ff.chunk.js.map",
-    "static/js/3.4a298cc8.chunk.js": "/react-machine-learning/static/js/3.4a298cc8.chunk.js",
-    "static/js/3.4a298cc8.chunk.js.map": "/react-machine-learning/static/js/3.4a298cc8.chunk.js.map",
+    "main.css": "/react-machine-learning/static/css/main.6dea0f05.chunk.css",
+    "main.js": "/react-machine-learning/static/js/main.e7645082.chunk.js",
+    "main.js.map": "/react-machine-learning/static/js/main.e7645082.chunk.js.map",
+    "runtime-main.js": "/react-machine-learning/static/js/runtime-main.b602e12e.js",
+    "runtime-main.js.map": "/react-machine-learning/static/js/runtime-main.b602e12e.js.map",
+    "static/js/2.d8838e39.chunk.js": "/react-machine-learning/static/js/2.d8838e39.chunk.js",
+    "static/js/2.d8838e39.chunk.js.map": "/react-machine-learning/static/js/2.d8838e39.chunk.js.map",
+    "static/js/3.ab879639.chunk.js": "/react-machine-learning/static/js/3.ab879639.chunk.js",
+    "static/js/3.ab879639.chunk.js.map": "/react-machine-learning/static/js/3.ab879639.chunk.js.map",
     "index.html": "/react-machine-learning/index.html",
-    "static/css/main.ea1455b2.chunk.css.map": "/react-machine-learning/static/css/main.ea1455b2.chunk.css.map",
-    "static/js/2.015782ff.chunk.js.LICENSE.txt": "/react-machine-learning/static/js/2.015782ff.chunk.js.LICENSE.txt"
+    "static/css/main.6dea0f05.chunk.css.map": "/react-machine-learning/static/css/main.6dea0f05.chunk.css.map",
+    "static/js/2.d8838e39.chunk.js.LICENSE.txt": "/react-machine-learning/static/js/2.d8838e39.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.6b2bfe43.js",
-    "static/js/2.015782ff.chunk.js",
-    "static/css/main.ea1455b2.chunk.css",
-    "static/js/main.e34812b2.chunk.js"
+    "static/js/runtime-main.b602e12e.js",
+    "static/js/2.d8838e39.chunk.js",
+    "static/css/main.6dea0f05.chunk.css",
+    "static/js/main.e7645082.chunk.js"
   ]
 }
