@@ -43,6 +43,9 @@ const useStyles = makeStyles((theme) => ({
     root: {
         width: '100%',
     },
+    accordion: {
+        marginBottom: theme.spacing(2),
+    },
     accoHeading: {
         fontSize: theme.typography.pxToRem(15),
         fontWeight: theme.typography.fontWeightRegular,
@@ -61,9 +64,13 @@ const useStyles = makeStyles((theme) => ({
         width: "100%",
         overflowX: "auto",
         whiteSpace: "nowrap",
-        margin: theme.spacing(0.5),
+        padding: theme.spacing(0.5),
         textOverflow: "ellipsis"
-    }
+    },
+    blue: {
+        background: "#3f51b5",
+        color: "white"
+    },
 }))
 
 const ConfirmData = (props) => {
@@ -120,7 +127,7 @@ const ConfirmData = (props) => {
 
     let deleted = null;
     if(data.isDeleted === true) {
-        deleted = <Paper className={classes.text}><Typography variant="body2">삭제된 데이터입니다. 삭제 날짜: {data.deleted_date}</Typography></Paper>
+        deleted = <Typography variant="body2">삭제된 데이터입니다. 삭제 날짜: {data.deleted_date}</Typography>
     }
 
     var texts = []; 
@@ -150,28 +157,31 @@ const ConfirmData = (props) => {
         <div>
             <Button variant="contained" color="primary" onClick={handleClickOpen}>확인</Button>
             <Dialog className={classes.root} open={open} onClose={handleClose} color="primary">
-                <DialogTitle onClose={handleClose}>{data.name} by {data.language}</DialogTitle>
+                <DialogTitle className={classes.blue} onClose={handleClose}>{data.name} by {data.language}</DialogTitle>
                 <DialogContent>
-                    <Accordion>
+                    <Accordion className={classes.accordion}>
                         <AccordionSummary
                         expandIcon={<ExpandMoreIcon />}
                         aria-controls="panel1a-content"
                         id="panel1a-header"
+                        className={classes.blue}
                         >
                             <Typography className={classes.accoHeading}>모델 정보 확인</Typography>
                         </AccordionSummary>
                         <AccordionDetails className={classes.detail}>
-                            {deleted}
-                            <Paper className={classes.text}><Typography variant="body2">분석 타입: {data.type}</Typography></Paper>
-                            <Paper className={classes.text}><Typography variant="body2">loss 형식: {data.loss_type}</Typography></Paper>
-                            <Paper className={classes.text}><Typography variant="body2">loss: {data.loss}</Typography></Paper>
-                            <Paper className={classes.text}><Typography variant="body2">accuracy: {data.accuracy}</Typography></Paper>
-                            <Paper className={classes.text}><Typography variant="body2">생성 날짜: {data.date_create}</Typography></Paper>
-                            <Paper className={classes.text}><Typography variant="body2">수정 날짜: {data.date_modify}</Typography></Paper>
+                            <Paper className={classes.text}>
+                                {deleted}
+                                <Typography variant="body2">분석 타입: {data.type}</Typography>
+                                <Typography variant="body2">loss 형식: {data.loss_type}</Typography>
+                                <Typography variant="body2">loss: {data.loss}</Typography>
+                                <Typography variant="body2">accuracy: {data.accuracy}</Typography>
+                                <Typography variant="body2">생성 날짜: {data.date_create}</Typography>
+                                <Typography variant="body2">수정 날짜: {data.date_modify}</Typography>
+                            </Paper>
                         </AccordionDetails>
                     </Accordion>
                     
-                    <Accordion>
+                    <Accordion className={classes.accordion}>
                         <AccordionSummary
                         expandIcon={<ExpandMoreIcon />}
                         aria-controls="panel1a-content"
@@ -186,11 +196,12 @@ const ConfirmData = (props) => {
                         </AccordionDetails>
                     </Accordion>
                 
-                    <Accordion>
+                    <Accordion className={classes.accordion}>
                         <AccordionSummary
                         expandIcon={<ExpandMoreIcon />}
                         aria-controls="panel1a-content"
                         id="panel1a-header"
+                        className={classes.blue}
                         >
                             <Typography className={classes.accoHeading}>모델로 테스트하기</Typography>
                         </AccordionSummary>
@@ -204,7 +215,7 @@ const ConfirmData = (props) => {
                         </AccordionDetails>
                     </Accordion>
                 
-                    <Accordion>
+                    <Accordion className={classes.accordion}>
                         <AccordionSummary
                         expandIcon={<ExpandMoreIcon />}
                         aria-controls="panel1a-content"
@@ -213,9 +224,11 @@ const ConfirmData = (props) => {
                             <Typography className={classes.accoHeading}>출처</Typography>
                         </AccordionSummary>
                         <AccordionDetails className={classes.detail}>
-                            <Paper className={classes.text}><Typography variant="body2">데이터 출처: <a href={data.dataSource} target="_blank" rel="noreferrer">{data.dataSource}</a></Typography></Paper>
-                            <Paper className={classes.text}><Typography variant="body2">데이터 링크: <a href={data.data} target="_blank" rel="noreferrer">{data.data}</a></Typography></Paper>
-                            <Paper className={classes.text}><Typography variant="body2">코드 링크: <a href={data.code} target="_blank" rel="noreferrer">{data.code}</a></Typography></Paper>
+                            <Paper className={classes.text}>
+                                <Typography variant="body2">데이터 출처: <a href={data.dataSource} target="_blank" rel="noreferrer">{data.dataSource}</a></Typography>
+                                <Typography variant="body2">데이터 링크: <a href={data.data} target="_blank" rel="noreferrer">{data.data}</a></Typography>
+                                <Typography variant="body2">코드 링크: <a href={data.code} target="_blank" rel="noreferrer">{data.code}</a></Typography>
+                            </Paper>
 
                         </AccordionDetails>
                     </Accordion>
