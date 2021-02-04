@@ -10,6 +10,7 @@ import Button from "@material-ui/core/Button";
 import Paper from "@material-ui/core/Paper";
 import TextField from "@material-ui/core/TextField";
 import MenuItem from "@material-ui/core/MenuItem";
+import Typography from "@material-ui/core/Typography";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -107,8 +108,8 @@ const CreateData = (props) => {
                             <MenuItem key="classification" value="분류">분류</MenuItem>
                         </TextField>
                         <TextField className={classes.input} label="loss 종류" variant="outlined" onChange={(event) => setLossType(event.target.value)}/>
-                        <TextField className={classes.input} label="loss" variant="outlined" onChange={(event) => setLoss(parseFloat(event.target.value))}/>
-                        <TextField className={classes.input} label="정확도" variant="outlined" onChange={(event) => setAccuracy(parseFloat(event.target.value))}/>
+                        <TextField className={classes.input} label="loss" variant="outlined" onChange={(event) => setLoss(isNaN(parseFloat(event.target.value))? 0 : event.target.value)}/>
+                        <TextField className={classes.input} label="정확도" variant="outlined" onChange={(event) => setAccuracy(isNaN(parseFloat(event.target.value))? 0 : event.target.value)}/>
                         <TextField
                             className={classes.input}
                             select
@@ -125,10 +126,11 @@ const CreateData = (props) => {
                         <TextField className={classes.input} label="설명" variant="outlined" onChange={(event) => setDesc(event.target.value)}/>
                         <TextField className={classes.input} label="데이터 링크" variant="outlined" onChange={(event) => setDataLink(event.target.value)}/>
                         <TextField className={classes.input} label="모델 링크" variant="outlined" onChange={(event) => setModelJson(event.target.value)}/>
-                        <TextField className={classes.input} label="독립 변수" variant="outlined" onChange={(event) => setIndependent(event.target.value)}/>
-                        <TextField className={classes.input} label="종속 변수" variant="outlined" onChange={(event) => setDependent(event.target.value)}/>
+                        <TextField className={classes.input} label="독립 변수" variant="outlined" onChange={(event) => setIndependent(event.target.value.split(" "))}/>
+                        <TextField className={classes.input} label="종속 변수" variant="outlined" onChange={(event) => setDependent(event.target.value.split(" "))}/>
                         <TextField className={classes.input} label="샘플 데이터 링크" variant="outlined" onChange={(event) => setSampledata(event.target.value)}/>
                     </Paper>
+                    <Typography>독립 변수와 종속 변수는 빈칸을 통해 구분하십시오.</Typography>
                 </DialogContent>
                 <DialogActions>
                     <Button variant="contained" color="primary" onClick={handleDataChange}>추가</Button>
