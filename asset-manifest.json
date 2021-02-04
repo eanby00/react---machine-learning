@@ -1,22 +1,22 @@
 {
   "files": {
     "main.css": "/react-machine-learning/static/css/main.6dea0f05.chunk.css",
-    "main.js": "/react-machine-learning/static/js/main.e7645082.chunk.js",
-    "main.js.map": "/react-machine-learning/static/js/main.e7645082.chunk.js.map",
+    "main.js": "/react-machine-learning/static/js/main.07fcce34.chunk.js",
+    "main.js.map": "/react-machine-learning/static/js/main.07fcce34.chunk.js.map",
     "runtime-main.js": "/react-machine-learning/static/js/runtime-main.b602e12e.js",
     "runtime-main.js.map": "/react-machine-learning/static/js/runtime-main.b602e12e.js.map",
-    "static/js/2.d8838e39.chunk.js": "/react-machine-learning/static/js/2.d8838e39.chunk.js",
-    "static/js/2.d8838e39.chunk.js.map": "/react-machine-learning/static/js/2.d8838e39.chunk.js.map",
+    "static/js/2.e6dcb711.chunk.js": "/react-machine-learning/static/js/2.e6dcb711.chunk.js",
+    "static/js/2.e6dcb711.chunk.js.map": "/react-machine-learning/static/js/2.e6dcb711.chunk.js.map",
     "static/js/3.ab879639.chunk.js": "/react-machine-learning/static/js/3.ab879639.chunk.js",
     "static/js/3.ab879639.chunk.js.map": "/react-machine-learning/static/js/3.ab879639.chunk.js.map",
     "index.html": "/react-machine-learning/index.html",
     "static/css/main.6dea0f05.chunk.css.map": "/react-machine-learning/static/css/main.6dea0f05.chunk.css.map",
-    "static/js/2.d8838e39.chunk.js.LICENSE.txt": "/react-machine-learning/static/js/2.d8838e39.chunk.js.LICENSE.txt"
+    "static/js/2.e6dcb711.chunk.js.LICENSE.txt": "/react-machine-learning/static/js/2.e6dcb711.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.b602e12e.js",
-    "static/js/2.d8838e39.chunk.js",
+    "static/js/2.e6dcb711.chunk.js",
     "static/css/main.6dea0f05.chunk.css",
-    "static/js/main.e7645082.chunk.js"
+    "static/js/main.07fcce34.chunk.js"
   ]
 }
