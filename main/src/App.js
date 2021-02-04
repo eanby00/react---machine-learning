@@ -9,6 +9,7 @@ import _ from "lodash";
 import arrayDatas from "./mainData.json"
 import ModelDatas from "./components/ModelDatas";
 import DetailSearch from "./components/DetailSearch";
+import CreateData from "./components/CreateData";
 
 // material-ui/core에서 import
 import { makeStyles, useTheme, fade } from '@material-ui/core/styles';
@@ -207,7 +208,6 @@ const App = (props) => {
       date_modify: ""
     });
     const [datas, setDatas] = useState(arrayDatas);
-
     const [menu_type, setMenuType] = useState("data");
     const [open, setOpen] = useState(false);
     const [searchType, setSearchType] = useState("name");
@@ -325,6 +325,10 @@ const App = (props) => {
 
     }
 
+    const onCreateData = (newData) => {
+      setDatas(datas.concat(newData));
+    }
+
     return(
         <div className={classes.root}>
           <Box component="div"className={clsx(classes.appBar, {
@@ -377,6 +381,12 @@ const App = (props) => {
                       <DetailSearch onChangeSearchKeyword={onChangeSearchKeyword}></DetailSearch>
                     </ThemeProvider>
                   </Box>
+                  
+                  <Box component="div">
+                    <ThemeProvider theme={theme_preventerror}>
+                      <CreateData onCreateData={onCreateData}data={datas}></CreateData>
+                    </ThemeProvider>
+                  </Box>
 
                   <Box component="div" className={classes.marginleft}>
                     <Button variant="contained" onClick={handleSaveFile}>저장</Button>
@@ -427,11 +437,13 @@ const App = (props) => {
                 </ModelDatas>
             </Box >
 
-            <ScrollTop {...props}>
-              <Fab color="secondary" size="small" aria-label="scroll back to top">
-                <KeyboardArrowUpIcon />
-              </Fab>
-            </ScrollTop>
+            <ThemeProvider theme={theme_preventerror}>
+              <ScrollTop {...props}>
+                <Fab color="secondary" size="small" aria-label="scroll back to top">
+                  <KeyboardArrowUpIcon />
+                </Fab>
+              </ScrollTop>
+            </ThemeProvider>
         </div>
     );
 }

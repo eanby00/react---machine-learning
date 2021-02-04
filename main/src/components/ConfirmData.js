@@ -39,7 +39,7 @@ const useStyles = makeStyles((theme) => ({
     },
     input: {
         margin: theme.spacing(1),
-        width: "90%"
+        width: '40%',
     },
     root: {
         width: '100%',

@@ -5,12 +5,12 @@ import DeleteData from "./DeleteData";
 import ConfirmData from "./ConfirmData";
 
 // material-ui/core에서 import
+import { makeStyles } from "@material-ui/core/styles";
 import TableRow from "@material-ui/core/TableRow";
 import TableCell from "@material-ui/core/TableCell";
 import Button from "@material-ui/core/Button";
 import { ThemeProvider } from "@material-ui/core/styles";
 import { unstable_createMuiStrictModeTheme } from "@material-ui/core/styles";
-import { makeStyles } from "@material-ui/core/styles";
 
 
 const theme = unstable_createMuiStrictModeTheme();
