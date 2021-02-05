@@ -11,6 +11,8 @@ import Paper from "@material-ui/core/Paper";
 import TextField from "@material-ui/core/TextField";
 import MenuItem from "@material-ui/core/MenuItem";
 import Typography from "@material-ui/core/Typography";
+import ListItemText from '@material-ui/core/ListItemText';
+import ListItem from "@material-ui/core/ListItem";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -19,6 +21,12 @@ const useStyles = makeStyles((theme) => ({
     input: {
         margin: theme.spacing(1),
         width: '40%',
+    },
+    word: {
+        marginTop: 10
+    },
+    menu: {
+        marginLeft: 50
     }
 }))
 
@@ -88,9 +96,17 @@ const CreateData = (props) => {
         handleClose();
     }
 
+    let trigger = null;
+    let temp = props.trigger;
+    if (temp === "Appbar") {
+        trigger = <Button variant="contained" onClick={handleClickOpen} className={classes.root}>추가</Button>;
+    } else {
+        trigger = <ListItem button key="추가" onClick={handleClickOpen} className={classes.menu}><ListItemText primary="추가"/></ListItem>;
+    }
+
     return (
         <div>
-            <Button className={classes.root} variant="contained" onClick={handleClickOpen}>추가</Button>
+            {trigger}
             <Dialog open={open} onClose={handleClose}>
                 <DialogTitle onClose={handleClose}>데이터 추가</DialogTitle>
                 <DialogContent>
@@ -130,7 +146,7 @@ const CreateData = (props) => {
                         <TextField className={classes.input} label="종속 변수" variant="outlined" onChange={(event) => setDependent(event.target.value.split(" "))}/>
                         <TextField className={classes.input} label="샘플 데이터 링크" variant="outlined" onChange={(event) => setSampledata(event.target.value)}/>
                     </Paper>
-                    <Typography>독립 변수와 종속 변수는 빈칸을 통해 구분하십시오.</Typography>
+                    <Typography className={classes.word}>독립 변수와 종속 변수는 빈칸을 통해 구분하십시오.</Typography>
                 </DialogContent>
                 <DialogActions>
                     <Button variant="contained" color="primary" onClick={handleDataChange}>추가</Button>

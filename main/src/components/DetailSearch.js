@@ -9,6 +9,8 @@ import DialogContent from "@material-ui/core/DialogContent";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import MenuItem from '@material-ui/core/MenuItem';
+import ListItemText from '@material-ui/core/ListItemText';
+import ListItem from "@material-ui/core/ListItem";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -17,6 +19,9 @@ const useStyles = makeStyles((theme) => ({
     input: {
         margin: theme.spacing(1),
         width: '25ch',
+    },
+    menu: {
+        marginLeft: 50
     }
 }))
 
@@ -69,10 +74,17 @@ const DetailSearch = (props) => {
         setOpen(false);
         props.onChangeSearchKeyword({name: name, type: modelType, loss_type: loss_type, language: lang, date_create: date_create, date_modify: date_modify});
     }
-
+    let trigger = null;
+    let temp = props.trigger;
+    if (temp === "Appbar") {
+        trigger = <Button variant="contained" onClick={handleClickOpen} className={classes.root}>상세검색</Button>;
+    } else {
+        trigger = <ListItem button key="상세검색" onClick={handleClickOpen} className={classes.menu}><ListItemText primary="상세검색"/></ListItem>;
+    }
+    
     return(
-        <div className={classes.root}>
-            <Button variant="contained" onClick={handleClickOpen} className={classes.word}>상세검색</Button>
+        <div>
+            {trigger}
             <Dialog open={open} onClose={handleClose}>
                 <DialogTitle onClose={handleClose}>상세 검색</DialogTitle>
                 <DialogContent>
