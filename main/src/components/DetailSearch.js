@@ -79,7 +79,7 @@ const DetailSearch = (props) => {
     if (temp === "Appbar") {
         trigger = <Button variant="contained" onClick={handleClickOpen} className={classes.root}>상세검색</Button>;
     } else {
-        trigger = <ListItem button key="상세검색" onClick={handleClickOpen} className={classes.menu}><ListItemText primary="상세검색"/></ListItem>;
+        trigger = <ListItem button key="상세검색" onClick={handleClickOpen}><ListItemText primary="상세검색" className={classes.menu}/></ListItem>;
     }
     
     return(

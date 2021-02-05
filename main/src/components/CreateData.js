@@ -101,7 +101,7 @@ const CreateData = (props) => {
     if (temp === "Appbar") {
         trigger = <Button variant="contained" onClick={handleClickOpen} className={classes.root}>추가</Button>;
     } else {
-        trigger = <ListItem button key="추가" onClick={handleClickOpen} className={classes.menu}><ListItemText primary="추가"/></ListItem>;
+        trigger = <ListItem button key="추가" onClick={handleClickOpen}><ListItemText primary="추가" className={classes.menu}/></ListItem>;
     }
 
     return (
