@@ -12,14 +12,14 @@ import tensorflowjs as tfjs
 # loss: 5.2651e-08, 0.000000052651
 # 정확도: 1.0000
 # 언어 종류: 파이썬
-# 코드 링크:
+# 코드 링크: https://raw.githubusercontent.com/eanby00/react-machine-learning/master/main/src/data_python/iris_model/iris.py
 # 데이터 출처: https://raw.githubusercontent.com/blackdew/tensorflow1/master/csv/iris.csv
 # 설명: 아이리스 품종 분류
-# 데이터 링크:
-# 모델 링크:
-# 독립 변수:
-# 종속 변수:
-# 샘플 데이터 링크: 
+# 데이터 링크: https://raw.githubusercontent.com/eanby00/react-machine-learning/master/main/src/data/iris.csv
+# 모델 링크: https://raw.githubusercontent.com/eanby00/react-machine-learning/master/main/src/data_python/iris_model/model.json
+# 독립 변수: 꽃잎길이 꽃잎폭 꽃받침길이 꽃받침폭
+# 종속 변수: 품종_setosa 품종_versicolor 품종_virginica
+# 샘플 데이터 링크: https://raw.githubusercontent.com/eanby00/react-machine-learning/master/main/src/data/sample/iris.csv
 
 # -------------------------------------------------------------------------------
 
