@@ -102,7 +102,6 @@ model.load_weights("./main/src/data_python/boston_model/boston.h5")
 temp = np.ravel(model.predict(test_boston[['crim', 'zn', 'indus', 'chas', 'nox', 'rm', 'age', 'dis', 'rad', 'tax', 'ptratio', 'b', 'lstat']]), order="C")
 result_data_predict = pd.Series(temp)
 
-
 result_data = pd.DataFrame(test_boston[["medv"]].index, columns=["id"])
 result_data["예측한 값"] = result_data_predict
 temp = test_boston[["medv"]].reset_index()["medv"]
