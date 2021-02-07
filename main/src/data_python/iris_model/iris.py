@@ -12,8 +12,14 @@ import tensorflowjs as tfjs
 # loss: 5.2651e-08, 0.000000052651
 # 정확도: 1.0000
 # 언어 종류: 파이썬
-# 생성 날짜: 20210208
-# 수정 날짜: 20210208
+# 코드 링크:
+# 데이터 출처: https://raw.githubusercontent.com/blackdew/tensorflow1/master/csv/iris.csv
+# 설명: 아이리스 품종 분류
+# 데이터 링크:
+# 모델 링크:
+# 독립 변수:
+# 종속 변수:
+# 샘플 데이터 링크: 
 
 # -------------------------------------------------------------------------------
 
@@ -47,7 +53,8 @@ model.load_weights("./main/src/data_python/iris_model/iris.h5")
 # -------------------------------------------------------------------------------
 
 # 강의의 데이터가 사라질 가능성이 있어서 따로 복사
-# iris.to_csv("iris.csv", index=False)
+# incoding.to_csv("iris.csv", index=False)
+# incoding[1:6].to_csv("iris.csv", index=False, header=False)
 
 # -------------------------------------------------------------------------------
 
