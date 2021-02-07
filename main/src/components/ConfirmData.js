@@ -95,6 +95,7 @@ const ConfirmData = (props) => {
         }
         if (data.sampleData !== ""){
             getData()
+            console.log(rows)
         }
     }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -119,11 +120,17 @@ const ConfirmData = (props) => {
             }
             tf.loadLayersModel(data.model_json).then(function(model){
                 let predict =  model.predict(tf.tensor(tests, [1,data.independent.length]))
-
-                temp.push(<TableCell key={"result"+temp.length}>{predict.arraySync()[0][0]}</TableCell>);
+                for (let i in predict.arraySync()[0]){
+                    temp.push(<TableCell key={"result"+temp.length}>{predict.arraySync()[0][i].toFixed(2)}</TableCell>);
+                }
                 setResult(result.concat(<TableRow key={"result"+result.length}>{temp}</TableRow>))
             })
         }
+        
+        for (let i in data.independent){
+            document.getElementById(data.independent[i]).value = null;
+        }
+
     }
 
     let deleted = null;
