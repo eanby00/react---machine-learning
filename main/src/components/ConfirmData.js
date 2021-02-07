@@ -95,7 +95,6 @@ const ConfirmData = (props) => {
         }
         if (data.sampleData !== ""){
             getData()
-            console.log(rows)
         }
     }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -126,7 +125,7 @@ const ConfirmData = (props) => {
                 setResult(result.concat(<TableRow key={"result"+result.length}>{temp}</TableRow>))
             })
         }
-        
+
         for (let i in data.independent){
             document.getElementById(data.independent[i]).value = null;
         }
