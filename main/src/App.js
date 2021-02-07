@@ -248,6 +248,9 @@ const App = (props) => {
             month = "0"+month;
         }
         let date = String(now.getDate());
+        if (date.length === 1) {
+            month = "0"+month;
+        }
         return year+month+date;
     }
     
