@@ -10,11 +10,11 @@
         loss: 0.0769
         정확도: 0.9799
         언어 종류: 자바스크립트
-        코드 링크: https://raw.githubusercontent.com/eanby00/react-machine-learning/master/main/src/data_python/iris_model/iris.py
+        코드 링크: https://raw.githubusercontent.com/eanby00/react-machine-learning/master/main/src/data_javascript/iris_model/iris.html
         데이터 출처: https://raw.githubusercontent.com/blackdew/tensorflow1/master/csv/iris.csv
         설명: 아이리스 품종 분류
         데이터 링크: https://raw.githubusercontent.com/eanby00/react-machine-learning/master/main/src/data/iris.csv
-        모델 링크: https://raw.githubusercontent.com/eanby00/react-machine-learning/master/main/src/data_python/iris_model/model.json
+        모델 링크: https://raw.githubusercontent.com/eanby00/react-machine-learning/master/main/src/data_javascript/iris_model/iris.json
         독립 변수: 꽃잎길이 꽃잎폭 꽃받침길이 꽃받침폭
         종속 변수: 품종_setosa 품종_versicolor 품종_virginica
         샘플 데이터 링크: https://raw.githubusercontent.com/eanby00/react-machine-learning/master/main/src/data/sample/iris.csv -->
@@ -80,9 +80,9 @@
     
                 // });  
                     
-                // tf.loadLayersModel("https://raw.githubusercontent.com/eanby00/react-machine-learning/master/main/src/data_javascript/iris_model/iris.json", { "Access-Control-Allow-Origin": '*'}).then(function(model){
-                //     model.predict(independent).print();
-                // });
+                tf.loadLayersModel("https://raw.githubusercontent.com/eanby00/react-machine-learning/master/main/src/data_javascript/iris_model/iris.json", { "Access-Control-Allow-Origin": '*'}).then(function(model){
+                    model.predict(independent).print();
+                });
 
             }
      
