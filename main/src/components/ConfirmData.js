@@ -82,9 +82,11 @@ const ConfirmData = (props) => {
     const [rows, setRows] = useState([]);
     const [result, setResult] = useState([]);
     
-    React.useEffect(() => {
-        async function getData() {
-            const response = await fetch(data.sampleData);
+    async function getData() {
+        if (data.sampledata === ""){
+            console.log("error!! sampledata is null")
+        } else {
+            const response = await fetch(data.sampledata);
             const reader = response.body.getReader();
             const result = await reader.read();
             const decoder = new TextDecoder("utf-8");
@@ -93,13 +95,11 @@ const ConfirmData = (props) => {
             const row = results.data;
             setRows(row)
         }
-        if (data.sampleData !== ""){
-            getData()
-        }
-    }, []) // eslint-disable-line react-hooks/exhaustive-deps
+    }
 
     const handleClickOpen = () => {
         setOpen(true);
+        getData();
     }
     
     const handleClose = () => {
