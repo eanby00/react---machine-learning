@@ -4,6 +4,7 @@ import numpy as np
 from tensorflow.keras.models import model_from_json
 import tensorflowjs as tfjs
 
+
 # -------------------------------------------------------------------------------
 # 이름: 건강검진정보 키와 몸무게
 # 회귀/분류: 분류
@@ -77,9 +78,16 @@ model = tf.keras.models.Model(X,Y)
 model.compile(loss="mse")
 
 ## 데이터로 모델 학습
-# model.fit(independent, dependent, epochs=10000, verbose=0)
-model.fit(independent, dependent, epochs=10)
-print(model.loss)
+i = 0
+model.fit(independent, dependent, epochs=10, verbose=1)
+while (i < 100 and model.evaluate(independent, dependent) > 0.001):
+    print(str(i)+"번째 반복 시작")
+    model.fit(independent, dependent, epochs=1000, verbose=0)
+    model.fit(independent, dependent, epochs=10, verbose=1)
+    i += 1
+print(i)
+model.evaluate(independent, dependent)
+
 # -------------------------------------------------------------------------------
 
 ## 모델의 수식 확인
