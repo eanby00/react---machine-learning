@@ -7,7 +7,7 @@ import tensorflowjs as tfjs
 
 # -------------------------------------------------------------------------------
 # 이름: 건강검진정보 키와 몸무게
-# 회귀/분류: 분류
+# 회귀/분류: 회귀
 # loss 종류: mse
 # loss: 99.9962
 # 정확도: X
@@ -16,10 +16,10 @@ import tensorflowjs as tfjs
 # 데이터 출처: https://www.data.go.kr/data/15007122/fileData.do
 # 설명: 건강검진정보 키와 몸무게, 데이터에 있는 이상치와 5단위로 구분되어 있어 loss 값이 높게 나왔다고 추측됨, 사실상 실패
 # 데이터 링크: https://raw.githubusercontent.com/eanby00/react-machine-learning/master/main/src/data/health_height_and_weight.csv
-# 모델 링크: 
+# 모델 링크: https://raw.githubusercontent.com/eanby00/react-machine-learning/master/main/src/data_python/health_height_and_weight/model.json
 # 독립 변수: height
 # 종속 변수: weight
-# 샘플 데이터 링크: 
+# 샘플 데이터 링크: https://raw.githubusercontent.com/eanby00/react-machine-learning/master/main/src/data/sample/health_height_and_weight.csv
 
 # -------------------------------------------------------------------------------
 
