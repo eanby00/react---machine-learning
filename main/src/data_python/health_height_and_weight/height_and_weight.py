@@ -79,7 +79,7 @@ model.compile(loss="mse")
 ## 데이터로 모델 학습
 # model.fit(independent, dependent, epochs=10000, verbose=0)
 model.fit(independent, dependent, epochs=10)
-
+print(model.loss)
 # -------------------------------------------------------------------------------
 
 ## 모델의 수식 확인
