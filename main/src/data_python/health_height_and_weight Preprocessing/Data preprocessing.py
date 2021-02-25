@@ -4,8 +4,8 @@
 import pandas as pd
 import numpy as np
 
-file_root = "./main/src/data/health_height_and_weight_preprocessing.csv"
-save_root = "./main/src/data/height_and_weight_Preprocessing.csv"
+file_root = "./main/src/data_python/health_height_and_weight Preprocessing/health_height_and_weight_preprocessing.csv"
+save_root = "./main/src/data_python/health_height_and_weight Preprocessing/height_and_weight_Preprocessing.csv"
 
 data = pd.read_csv(file_root, header=None, names=["height", "weight"]) ## 출처에서 데이터를 다운받은 후 키와 몸무게의 데이터만 남긴 것
 # print(data)
