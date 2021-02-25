@@ -1,0 +1,8 @@
+참고: https://github.com/eanby00/react-machine-learning/blob/master/main/src/data_python/health_height_and_weight%20Preprocessing/Data%20preprocessing.py
+지식 출처: https://wikidocs.net/16582
+
+IQR 방식의 데이터 처리
+
+단 iqr을 구하는 과정에 있어 quartile_1, quartile_3를 따로 구할 필요가 없고
+data.describe()을 통해 도출되는 값 중 75%에 해당하는 값이 quartile_3과 대응되고
+25%에 해당하는 값이 quartile_1에 대응되는 것을 알았기 때문에 이로 대체하면 될 듯
