@@ -16,7 +16,7 @@ import tensorflowjs as tfjs
 # 데이터 출처: https://www.data.go.kr/data/15007122/fileData.do
 # 설명: 기존의 모델 향상을 위해 데이터 전처리 적용 버전, 성능 향상이 있었으나 실제 사용하기에는 힘든 loss 값을 보여줌
 # 데이터 링크: https://raw.githubusercontent.com/eanby00/react-machine-learning/master/main/src/data_python/health_height_and_weight%20Preprocessing/height_and_weight_Preprocessing.csv
-# 모델 링크: https://raw.githubusercontent.com/eanby00/react-machine-learning/master/main/src/data_python/health_height_and_weight/model.json
+# 모델 링크: https://raw.githubusercontent.com/eanby00/react-machine-learning/master/main/src/data_python/health_height_and_weight%20Preprocessing/model.json
 # 독립 변수: height
 # 종속 변수: weight
 # 샘플 데이터 링크: https://raw.githubusercontent.com/eanby00/react-machine-learning/master/main/src/data_python/health_height_and_weight%20Preprocessing/sample.csv
